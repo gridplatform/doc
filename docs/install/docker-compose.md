@@ -51,6 +51,7 @@ bash install/verify.sh
 - **core** embeds grid-cli and Terraform. **ui** serves the console and proxies `/api` to core.
 - HTTP port: `GRID_HTTP_PORT` (default `80`). Open `http://<host>/`.
 - Before applying infrastructure, configure remote state (`GRID_TF_*`). See [Remote Terraform state](./remote-state.md).
+- **Metrics** are systemd units on the host (`install/monitoring/install-systemd.sh`). Grid `compose down` does not stop Prometheus/Alloy. See [MONITORING.md](https://github.com/gridplatform/grid-core/blob/main/docs/MONITORING.md).
 
 ## Environment variables
 

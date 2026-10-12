@@ -12,4 +12,9 @@ Self-host Grid on a VM or with Docker Compose. Scripts live in **[grid-core/inst
 | [releases.md](releases.md) | Version channels, tags, and install pins |
 | [configuration.md](configuration.md) | Env vars, auth, GitOps, `GRID_TF_*` |
 
+Monitoring on the VM is **systemd** (Prometheus + Alloy), not Grid Compose —
+[`install/monitoring`](https://github.com/gridplatform/grid-core/tree/main/install/monitoring).
+`docker compose down` / stopping Grid does not stop metrics. Details:
+[grid-core/docs/MONITORING.md](https://github.com/gridplatform/grid-core/blob/main/docs/MONITORING.md).
+
 **Typical org path:** [remote-state.md](remote-state.md) → [vm.md](vm.md) → [configuration.md](configuration.md) → [../admin/rbac.md](../admin/rbac.md).

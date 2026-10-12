@@ -63,6 +63,18 @@ Create the store **before** the first apply — [Remote state guide](./remote-st
 
 Keys are **per desired-state unit** so `dependsOn` can read VPC/other outputs from remote state.
 
+## Metrics (optional, systemd)
+
+Prometheus + Alloy are **systemctl** units on the VM (not Compose). Install with
+`sudo bash install/monitoring/install-systemd.sh`, then set:
+
+| Variable | Purpose |
+|----------|---------|
+| `GRID_PROMETHEUS_URL` | Query API (e.g. `http://127.0.0.1:9090` native, or `http://host.docker.internal:9090` from Grid in Docker) |
+
+Stopping Grid does not stop `prometheus` / `alloy`. See
+[MONITORING.md](https://github.com/gridplatform/grid-core/blob/main/docs/MONITORING.md).
+
 ## UI
 
 Point the console at the API (Vite / build-time env — see **grid-ui** README), e.g. `VITE_API_URL=https://grid.example.com/api` or `http://<vm-ip>:3000`.
