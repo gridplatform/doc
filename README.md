@@ -1,24 +1,24 @@
 # Grid Docs
 
-![Grid Banner](readme-assets/banner.png)
+Guides for [Grid Platform](https://github.com/gridplatform) — install, concepts, admin, and CLI.
 
-> **Read these docs on GitHub.** This repo is Markdown-first so organizations can browse, fork, and PR without a separate website. The same `docs/` tree can power a future docs site later.
+**Read these on GitHub.** Markdown-first so teams can browse, fork, and PR without a separate docs site. The same `docs/` tree can power a site later if you want one.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Start here (organizations)
+## Start here
 
 | Step | Guide |
 |------|--------|
-| 0. Org adoption overview | [docs/organizations.md](docs/organizations.md) |
-| 1. Create remote Terraform state (S3 / GCS / Azure) | [docs/install/remote-state.md](docs/install/remote-state.md) |
-| 2. Install Grid (Compose on a VM — default) | [docs/install/vm.md](docs/install/vm.md) · [docs/install/docker-compose.md](docs/install/docker-compose.md) |
+| 0. Org adoption | [docs/organizations.md](docs/organizations.md) |
+| 1. Remote Terraform state (S3 / GCS / Azure) | [docs/install/remote-state.md](docs/install/remote-state.md) |
+| 2. Install Grid (Compose on a VM) | [docs/install/vm.md](docs/install/vm.md) · [docker-compose.md](docs/install/docker-compose.md) |
 | 3. Configure env / auth / GitOps | [docs/install/configuration.md](docs/install/configuration.md) |
-| 4. Org model (envs, groups, approvals) | [docs/admin/rbac.md](docs/admin/rbac.md) |
-| 5. Concepts (desired-state, releases, dependsOn) | [docs/concepts/overview.md](docs/concepts/overview.md) |
-| 6. CLI path (AWS / GCP) | [docs/cli/aws-gcp.md](docs/cli/aws-gcp.md) |
+| 4. Orgs, environments, approvals | [docs/admin/rbac.md](docs/admin/rbac.md) |
+| 5. Concepts | [docs/concepts/overview.md](docs/concepts/overview.md) |
+| 6. CLI (AWS / GCP) | [docs/cli/aws-gcp.md](docs/cli/aws-gcp.md) |
 
-**Install scripts & Dockerfiles** live with the product: [grid-core/install](https://github.com/gridplatform/grid-core/tree/main/install) (not in this repo).
+Install scripts and Dockerfiles live in **[grid-core/install](https://github.com/gridplatform/grid-core/tree/main/install)** (not in this repository).
 
 ### One-line install (Compose on Ubuntu)
 
@@ -33,43 +33,29 @@ Then open `http://<host>/`. Full path: [docs/install/overview.md](docs/install/o
 
 ```text
 docs/
-  README.md
-  intro.md
-  organizations.md         ← org adoption
-  install/
-    README.md
-    overview.md
-    remote-state.md
-    vm.md
-    docker-compose.md
-    configuration.md
-  concepts/overview.md
-  admin/rbac.md
-  cli/aws-gcp.md
+  organizations.md
+  install/          remote-state, vm, compose, configuration
+  concepts/
+  admin/
+  cli/
 ```
-
-Browse folders on GitHub — every link uses a `.md` path so it opens correctly in the GitHub UI.
 
 ## Product repositories
 
-| Repo | Role |
-|------|------|
-| [grid-core](https://github.com/gridplatform/grid-core) | API + `install/` (Compose, `install.sh`, Dockerfiles) |
-| [grid-ui](https://github.com/gridplatform/grid-ui) | Console |
-| [grid-cli](https://github.com/gridplatform/grid-cli) | Generate / plan / apply / destroy |
-| [grid-config](https://github.com/gridplatform/grid-config) | Sample desired-state (GitOps) |
-| [grid-terraform](https://github.com/gridplatform/grid-terraform) | Module bank |
+| Repository | What it’s for |
+|------------|---------------|
+| [grid-core](https://github.com/gridplatform/grid-core) | Runs Grid on your machine + install packaging |
+| [grid-ui](https://github.com/gridplatform/grid-ui) | Website console |
+| [grid-cli](https://github.com/gridplatform/grid-cli) | Command-line tool (also used by the API) |
+| [grid-terraform](https://github.com/gridplatform/grid-terraform) | Ready-made Terraform modules |
+| [grid-config](https://github.com/gridplatform/grid-config) | **Example** desired-state JSON — create your own for real use |
 
-## GitHub-first, website-later
-
-- **Today:** read and contribute via GitHub (this README + `docs/**/*.md`).
-- **Later:** optional Docusaurus (`npm start` / `npm run build`) using the same files — config is kept under the hood; you do **not** need to deploy a docs site to use Grid.
-- Org profile [`.github`](https://github.com/gridplatform/.github) is branding only — not product docs.
+Org profile branding: [gridplatform/.github](https://github.com/gridplatform/.github). Status: [STATUS.md](https://github.com/gridplatform/.github/blob/main/STATUS.md).
 
 ## Contributing
 
 Fork → branch → pull request against `main`. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
----
+## License
 
-**Built with ❤️ by the Grid Platform team**
+MIT — see [LICENSE](LICENSE).
