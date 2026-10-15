@@ -3,7 +3,6 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   docs: [
     'Home',
-    'What_Is_Grid',
     {
       type: 'category',
       label: 'Architecture',
@@ -36,10 +35,22 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Clouds',
       items: [
-        'Clouds/Support_Matrix',
         'Clouds/AWS',
         'Clouds/GCP',
-        'Clouds/Azure_And_Others',
+        'Clouds/Azure',
+        'Clouds/Oracle',
+        'Clouds/IBM',
+        'Clouds/Alibaba',
+        'Clouds/Tencent',
+        'Clouds/Huawei',
+        'Clouds/OVH',
+        'Clouds/Deutsche_Telekom',
+        'Clouds/CtrlS',
+        'Clouds/Yotta',
+        'Clouds/Rancher',
+        'Clouds/OpenShift',
+        'Clouds/Redis_Enterprise',
+        'Clouds/Confluent_Cloud',
       ],
     },
     {
@@ -70,6 +81,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'Install/Overview',
         'Install/Remote_State',
+        'Install/Cloud_Accounts',
         'Install/VM',
         'Install/Docker_Compose',
         'Install/Dev_Vs_Prod',

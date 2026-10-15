@@ -31,5 +31,5 @@ List rows use visibility helpers (`visible` / `hidden` / `invalid`) so disabled 
 
 ## Related
 
-- [Cloud support matrix](../Clouds/Support_Matrix.md)
+- [AWS catalog](../Clouds/AWS.md)
 - [Roadmap](../Roadmap.md)

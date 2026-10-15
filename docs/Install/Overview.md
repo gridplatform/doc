@@ -11,6 +11,7 @@ Install **scripts and Compose** live in [grid-core/install](https://github.com/g
 | Path | What runs | Guide |
 |------|-----------|--------|
 | **Remote state first** | Object store for Terraform state + archive mirror | [Remote Terraform state](./Remote_State.md) |
+| **Cloud credentials** | How the host authenticates to providers | [Cloud accounts and credentials](./Cloud_Accounts.md) |
 | **Compose on a VM** *(default)* | Docker: `core` + `ui` | [Docker Compose](./Docker_Compose.md) · [VM](./VM.md) · `install.sh` |
 | **Native VM** | Node + systemd + host nginx | [VM](./VM.md) with `GRID_USE_NATIVE=1` |
 | **Release images** | GHCR `current` / `lts` / pinned version | [Releases](./Releases.md) |
@@ -23,7 +24,7 @@ Install **scripts and Compose** live in [grid-core/install](https://github.com/g
 > 4. Install host monitoring ([guide](./Monitoring.md))  
 > 5. Sync → Plan → Apply  
 
-Skipping remote state is acceptable only for a disposable laptop lab.
+Skipping remote state is acceptable only for a disposable local lab.
 
 ## What gets installed
 

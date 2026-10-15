@@ -5,7 +5,7 @@ title: Remote Terraform state
 # Remote Terraform state
 
 **Before you apply real infrastructure from a Grid VM (or Compose host), create a remote state backend.**  
-Local `terraform.tfstate` on the VM disk is fine for a laptop lab; it is **not** safe for shared / replaceable VMs — if the VM dies, you lose the map of what Terraform manages.
+Local `terraform.tfstate` on the VM disk is fine for a local lab; it is **not** safe for shared / replaceable VMs — if the VM dies, you lose the map of what Terraform manages.
 
 Grid generates `backend.tf` and `terraform_remote_state` for `dependsOn` from the same settings. Configure them once on the control plane (`.env` / systemd / Compose).
 

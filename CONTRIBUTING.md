@@ -24,23 +24,25 @@ Match Deep-Dive style (no numeric prefixes required):
 
 | Topic | Path |
 |-------|------|
-| Product thesis | `docs/What_Is_Grid.md`, `docs/Architecture/` |
+| About Grid | `docs/Home.md`, `docs/Architecture/` |
 | Onboarding | `docs/Getting-Started/` |
 | Desired state / sync / releases | `docs/Concepts/` |
-| Multi-cloud maturity | `docs/Clouds/` |
+| Which clouds / catalog type·subtype | `docs/Clouds/` — one MD per provider |
+| How to install and run Grid | `docs/Install/` |
 | Console | `docs/Console/` |
 | RBAC | `docs/Admin/` |
 | CLI | `docs/CLI/` |
-| Install | `docs/Install/` |
 | Upcoming work | `docs/Roadmap.md` |
 | Env-var SoT | `data/configuration.json` |
+
+**Add a cloud to the catalog docs:** create `docs/Clouds/<Provider>.md` with a type/subtype table (`supported` or `planned`), and add the doc id to `sidebars.ts`.
 
 Do not duplicate install shell scripts here — link to [grid-core/install](https://github.com/gridplatform/grid-core/tree/main/install).
 
 ## Style
 
 - Deep and accurate over short marketing blurbs
-- Separate **samples / modules / CLI catalog / console flags** when maturity differs
+- Catalog support lives under **Clouds**; install / credentials / backends live under **Install**
 - Prefer tables and copy-pasteable commands
 - Use blockquotes for callouts so GitHub stays readable
 - Absolute GitHub URLs for other repos
@@ -48,4 +50,4 @@ Do not duplicate install shell scripts here — link to [grid-core/install](http
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — same as the Grid Platform repositories.

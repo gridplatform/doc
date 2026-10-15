@@ -6,6 +6,7 @@ Self-host Grid on a VM or with Docker Compose. Scripts: **[grid-core/install](ht
 |-------|-------------|
 | [Overview](Overview.md) | Paths, components, order of operations |
 | [Remote_State](Remote_State.md) | Multi-cloud Terraform state backends |
+| [Cloud_Accounts](Cloud_Accounts.md) | Host credentials for cloud providers |
 | [VM](VM.md) | Ubuntu VM — Compose default, native optional |
 | [Docker_Compose](Docker_Compose.md) | Compose-only |
 | [Dev_Vs_Prod](Dev_Vs_Prod.md) | Env file layering |

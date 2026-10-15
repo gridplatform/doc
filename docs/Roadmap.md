@@ -18,16 +18,17 @@ What Grid is **shipping**, **hardening**, and **explicitly not done yet**. Prefe
 | Remote state multi-backend | S3 / GCS / Azure / OCI / OSS / COS / S3-compat |
 | Host monitoring integration | Prometheus + Alertmanager + Alloy |
 | AWS console release surface | Primary UI cloud |
-| AWS + GCP CLI support (catalog) | Strongest generate/plan paths |
+| AWS catalog subtypes | Documented as `supported` under [Clouds/AWS](./Clouds/AWS.md) |
 
 ## In progress
 
 | Area | Notes |
 |------|-------|
 | Broader console cloud release | GCP and others behind `consoleProviderRelease` |
-| Azure / other CLI catalogs | Moving types from planned → supported |
+| GCP and other catalogs | Documented as `planned` until released — see [Clouds/GCP](./Clouds/GCP.md) |
+| Azure / other CLI catalogs | Moving subtypes from planned → supported |
 | Packaging / release polish | GHCR channels, install verification |
-| Hardening AWS/GCP on real VMs | Production soak |
+| Hardening AWS on real VMs | Production soak |
 
 ## Upcoming / gated
 
@@ -48,9 +49,9 @@ What Grid is **shipping**, **hardening**, and **explicitly not done yet**. Prefe
 - **CLI catalog** is the generate truth.
 - **Console flags** are the UI truth.
 
-When those disagree, the matrix wins: [Cloud support matrix](./Clouds/Support_Matrix.md).
+When those disagree, the per-provider Clouds pages win — start with [AWS](./Clouds/AWS.md).
 
 ## Related
 
-- [What is Grid?](./What_Is_Grid.md)
+- [About Grid](./Home.md)
 - [Feature flags](./Console/Feature_Flags.md)

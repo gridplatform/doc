@@ -33,4 +33,4 @@ When an environment requires approval, write releases wait in a pending state un
 ## Related
 
 - [Release lifecycle](../Concepts/Release_Lifecycle.md)
-- [Cloud support matrix](../Clouds/Support_Matrix.md)
+- [AWS catalog](../Clouds/AWS.md)

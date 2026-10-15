@@ -55,5 +55,5 @@ Author JSON in Git
 
 ## Related
 
-- [What is Grid?](../What_Is_Grid.md)
-- [Cloud support matrix](../Clouds/Support_Matrix.md)
+- [About Grid](../Home.md)
+- [AWS catalog](../Clouds/AWS.md)

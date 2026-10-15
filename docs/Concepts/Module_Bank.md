@@ -38,7 +38,7 @@ Unit JSON often carries `metadata.modulePath` (e.g. `aws/vpc`) so generate knows
 
 Having a folder in the bank does **not** always mean “console-released” or “CLI supported”. Cross-check:
 
-1. [Cloud support matrix](../Clouds/Support_Matrix.md)
+1. Provider catalog under [Clouds](../Clouds/AWS.md)
 2. CLI `grid providers` / resource catalog status
 3. Console `consoleProviderRelease` (UI-only gate)
 

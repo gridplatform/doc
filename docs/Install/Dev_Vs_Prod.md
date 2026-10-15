@@ -22,7 +22,7 @@ The two files are never mixed. There is **no override flag** for production.
 | **install / Compose** | **Yes** | `check-env.sh` + `compose-up.sh`; Compose is **production-only** |
 | **grid-cli** | **No** | Add-on: Core validates then injects env via `cliChildEnv()`. `npm run build` is compile-only. Generate still errors if remote state vars are incomplete. |
 
-Local / laptop: **`npm run dev`** + `.env.development`.
+Local development: **`npm run dev`** + `.env.development`.
 
 Released module bank: `https://github.com/gridplatform/grid-terraform.git` @ **`v0.1.0`**.
 

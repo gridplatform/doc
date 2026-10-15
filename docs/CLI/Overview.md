@@ -33,9 +33,7 @@ Core injects `GRID_*` paths into child processes via `cliChildEnv` so generate f
 
 ## Catalog maturity
 
-Each provider adapter exposes resource types as `supported`, `coming_soon`, or `planned`. That metadata is the honest CLI story — separate from console feature flags.
-
-See [Cloud support matrix](../Clouds/Support_Matrix.md).
+Each provider page under [Clouds](../Clouds/AWS.md) lists subtypes as `supported` or `planned` (anything not released yet is planned). That is separate from console feature flags.
 
 ## Multi-cloud
 
@@ -46,7 +44,7 @@ The CLI registers all platform provider ids. Practical generate support is stron
 | Surface | Enforces Grid roles / approvals? |
 |---------|----------------------------------|
 | Console / API | Yes |
-| Raw CLI on a laptop | No — cloud IAM only |
+| Raw CLI on a local machine | No — cloud IAM only |
 
 ## Related
 

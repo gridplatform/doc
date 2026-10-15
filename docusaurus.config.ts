@@ -8,7 +8,7 @@ import type * as Preset from '@docusaurus/preset-classic';
  * Custom domain later: set `url` to the domain and `baseUrl` to `/`.
  */
 const config: Config = {
-  title: 'Grid Platform Docs',
+  title: 'About Grid',
   tagline: 'Self-hosted infrastructure orchestration',
   favicon: 'img/favicon-32x32.png',
 
@@ -64,7 +64,7 @@ const config: Config = {
       },
     },
     navbar: {
-      title: 'Grid Docs',
+      title: 'Grid',
       logo: {
         alt: 'Grid',
         src: 'img/logo.png',
@@ -77,7 +77,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'docs',
           position: 'left',
-          label: 'Docs',
+          label: 'Documentation',
         },
         {
           to: '/Getting-Started/Quick_Start',
@@ -90,13 +90,8 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/gridplatform/doc',
-          label: 'GitHub',
-          position: 'right',
-        },
-        {
           href: 'https://github.com/gridplatform',
-          label: 'Org',
+          label: 'GitHub',
           position: 'right',
         },
       ],
@@ -107,7 +102,7 @@ const config: Config = {
         {
           title: 'Start',
           items: [
-            { label: 'What is Grid?', to: '/What_Is_Grid' },
+            { label: 'About Grid', to: '/' },
             { label: 'Quick start', to: '/Getting-Started/Quick_Start' },
             { label: 'Your desired-state repo', to: '/Getting-Started/Your_Desired_State_Repo' },
           ],
@@ -116,7 +111,7 @@ const config: Config = {
           title: 'Deep dives',
           items: [
             { label: 'Desired state', to: '/Concepts/Desired_State' },
-            { label: 'Cloud matrix', to: '/Clouds/Support_Matrix' },
+            { label: 'AWS catalog', to: '/Clouds/AWS' },
             { label: 'Configuration', to: '/Install/Configuration' },
             { label: 'Roadmap', to: '/Roadmap' },
           ],

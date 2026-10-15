@@ -1,4 +1,4 @@
-# Grid Docs
+# About Grid
 
 Product documentation for [Grid Platform](https://github.com/gridplatform) — desired-state GitOps, multi-cloud Terraform orchestration, console, CLI, and install.
 
@@ -18,10 +18,10 @@ Folders and files follow the same convention as Deep-Dive docs:
 
 | Section | Start here |
 |---------|------------|
-| Product | [What_Is_Grid](docs/What_Is_Grid.md) · [Architecture](docs/Architecture/Control_Plane.md) |
+| About Grid | [Home](docs/Home.md) · [Architecture](docs/Architecture/Control_Plane.md) |
 | Getting-Started | [Quick_Start](docs/Getting-Started/Quick_Start.md) · [Your_Desired_State_Repo](docs/Getting-Started/Your_Desired_State_Repo.md) |
 | Concepts | [Desired_State](docs/Concepts/Desired_State.md) · [Unit_JSON](docs/Concepts/Unit_JSON.md) · [GitOps_Sync](docs/Concepts/GitOps_Sync.md) |
-| Clouds | [Support_Matrix](docs/Clouds/Support_Matrix.md) |
+| Clouds | One MD per provider, e.g. [AWS](docs/Clouds/AWS.md) · [GCP](docs/Clouds/GCP.md) |
 | Console | [Overview](docs/Console/Overview.md) |
 | Install | [Overview](docs/Install/Overview.md) · [Configuration](docs/Install/Configuration.md) |
 | Roadmap | [Roadmap](docs/Roadmap.md) |
@@ -45,6 +45,8 @@ Env-var reference tables are **generated**:
 
 CI fails if the generated file is stale.
 
+**Cloud catalog pages** under `docs/Clouds/` are plain Markdown — edit the provider MD file directly (no JSON).
+
 ## Local docs site
 
 ```bash
@@ -64,16 +66,15 @@ If the site ever shows a plain README again, Pages was switched back to `main` �
 ```text
 docs/
   Home.md
-  What_Is_Grid.md
   Roadmap.md
   Architecture/
   Getting-Started/
   Concepts/
-  Clouds/
+  Clouds/          # provider catalog (type/subtype) — one MD each
   Console/
   Admin/
   CLI/
-  Install/
+  Install/         # how to install and run Grid
 data/
   configuration.json
 scripts/
@@ -82,18 +83,14 @@ scripts/
 
 ## Product repositories
 
-| Repository | Role |
-|------------|------|
-| [grid-core](https://github.com/gridplatform/grid-core) | API + install |
+| Repo | Role |
+|------|------|
+| [grid-core](https://github.com/gridplatform/grid-core) | API, GitOps, releases, install |
 | [grid-ui](https://github.com/gridplatform/grid-ui) | Console |
 | [grid-cli](https://github.com/gridplatform/grid-cli) | Generate / plan / apply |
 | [grid-terraform](https://github.com/gridplatform/grid-terraform) | Module bank |
-| [grid-config](https://github.com/gridplatform/grid-config) | Example desired-state only |
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+| [grid-config](https://github.com/gridplatform/grid-config) | Example desired-state tree only |
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT

@@ -97,7 +97,7 @@ Subtype strings are shared across:
 
 - Desired-state `metadata.kind` / `resources[].type`
 - Console deploy flags / list visibility
-- CLI resource catalog maturity (`supported` / `coming_soon` / `planned`)
+- CLI resource catalog maturity (`supported` / `planned`)
 
 Use the same word everywhere. Inventing a free-form type that is not in the catalog will show as invalid/hidden in the console even if a file syncs.
 

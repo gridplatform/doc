@@ -13,7 +13,7 @@ Environment variables for **grid-core**, install Compose, and the console.
 Canonical templates in product repos:
 
 - Install: [`grid-core/install/.env.example`](https://github.com/gridplatform/grid-core/blob/main/install/.env.example)
-- Core (laptop / native): [`grid-core/.env.example`](https://github.com/gridplatform/grid-core/blob/main/.env.example)
+- Core (local / native): [`grid-core/.env.example`](https://github.com/gridplatform/grid-core/blob/main/.env.example)
 - Console: [`grid-ui/.env.example`](https://github.com/gridplatform/grid-ui/blob/main/.env.example)
 
 **Required** = needed for production / install boot (`npm run prod`, Compose `check-env.sh`).
@@ -117,7 +117,7 @@ Optional Kubernetes workload reconciler (Application CRD). Off by default.
 
 ## Install / Compose pins
 
-Used by `install/.env` and Compose. Not all apply to a bare `npm run prod` on a laptop.
+Used by `install/.env` and Compose. Not all apply to a bare `npm run prod` on a local machine.
 
 | Variable | Required | Purpose | Typical |
 |----------|----------|---------|---------|

@@ -49,7 +49,7 @@ Environment variables for **grid-core**, install Compose, and the console.
 Canonical templates in product repos:
 
 - Install: [\`grid-core/install/.env.example\`](${data.sources.installEnv})
-- Core (laptop / native): [\`grid-core/.env.example\`](${data.sources.coreEnv})
+- Core (local / native): [\`grid-core/.env.example\`](${data.sources.coreEnv})
 - Console: [\`grid-ui/.env.example\`](${data.sources.uiEnv})
 
 **Required** = needed for production / install boot (\`npm run prod\`, Compose \`check-env.sh\`).

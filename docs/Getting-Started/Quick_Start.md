@@ -4,7 +4,7 @@ title: Quick start
 
 # Quick start
 
-Goal: a working Grid control plane on a VM or laptop, pointed at a desired-state repository, ready to Sync and Plan.
+Goal: a working Grid control plane on a VM or local machine, pointed at a desired-state repository, ready to Sync and Plan.
 
 ## Prerequisites
 
@@ -62,4 +62,4 @@ Full variable reference: [Configuration](../Install/Configuration.md).
 
 - [Desired-state layout](../Concepts/Desired_State.md)
 - [Console overview](../Console/Overview.md)
-- [Cloud support matrix](../Clouds/Support_Matrix.md)
+- [AWS catalog](../Clouds/AWS.md)
