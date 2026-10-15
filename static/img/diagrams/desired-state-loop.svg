@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 280" role="img" aria-label="Desired state loop">
   <defs>
     <linearGradient id="loopBg" x1="0" y1="0" x2="920" y2="280">
@@ -9,9 +10,8 @@
     </marker>
   </defs>
   <rect width="920" height="280" rx="20" fill="url(#loopBg)" stroke="#E2E8F0"/>
-  <text x="32" y="40" fill="#0F172A" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700">Desired-state loop</text>
+  <text x="32" y="40" fill="#0F172A" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700">Control loop</text>
 
-  <!-- steps -->
   <g font-family="Inter, system-ui, sans-serif">
     <rect x="40" y="80" width="150" height="100" rx="14" fill="#fff" stroke="#C7D2FE" stroke-width="1.5"/>
     <text x="115" y="118" text-anchor="middle" fill="#3B5BDB" font-size="13" font-weight="700">1</text>
@@ -23,20 +23,20 @@
     <rect x="240" y="80" width="150" height="100" rx="14" fill="#fff" stroke="#C7D2FE" stroke-width="1.5"/>
     <text x="315" y="118" text-anchor="middle" fill="#3B5BDB" font-size="13" font-weight="700">2</text>
     <text x="315" y="144" text-anchor="middle" fill="#0F172A" font-size="14" font-weight="600">Sync</text>
-    <text x="315" y="164" text-anchor="middle" fill="#64748B" font-size="11">upsert · mark stale</text>
+    <text x="315" y="164" text-anchor="middle" fill="#64748B" font-size="11">upsert / mark stale</text>
 
     <path d="M400 130 H430" stroke="#3B5BDB" stroke-width="2" fill="none" marker-end="url(#a2)"/>
 
     <rect x="440" y="80" width="150" height="100" rx="14" fill="#fff" stroke="#C7D2FE" stroke-width="1.5"/>
     <text x="515" y="118" text-anchor="middle" fill="#3B5BDB" font-size="13" font-weight="700">3</text>
     <text x="515" y="144" text-anchor="middle" fill="#0F172A" font-size="14" font-weight="600">Plan / Apply</text>
-    <text x="515" y="164" text-anchor="middle" fill="#64748B" font-size="11">releases + live logs</text>
+    <text x="515" y="164" text-anchor="middle" fill="#64748B" font-size="11">by engine + logs</text>
 
     <path d="M600 130 H630" stroke="#3B5BDB" stroke-width="2" fill="none" marker-end="url(#a2)"/>
 
     <rect x="640" y="80" width="150" height="100" rx="14" fill="#fff" stroke="#99E9F2" stroke-width="1.5"/>
     <text x="715" y="118" text-anchor="middle" fill="#0B7285" font-size="13" font-weight="700">4</text>
     <text x="715" y="144" text-anchor="middle" fill="#0F172A" font-size="14" font-weight="600">State + monitor</text>
-    <text x="715" y="164" text-anchor="middle" fill="#64748B" font-size="11">remote TF · metrics</text>
+    <text x="715" y="164" text-anchor="middle" fill="#64748B" font-size="11">state / GitOps / metrics</text>
   </g>
 </svg>

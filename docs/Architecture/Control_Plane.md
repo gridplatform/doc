@@ -7,8 +7,8 @@ title: Control plane
 Grid’s control plane is four cooperating repositories plus your intent Git remote. It orchestrates **engines** — Terraform for cloud infrastructure today, and Kubernetes workload GitOps (Argo / OpenShift) as that path releases — under one Sync, release, and RBAC model.
 
 <figure className="grid-figure">
-  <img src="/doc/img/diagrams/control-plane.png" alt="Control plane: grid-ui to grid-core to grid-cli to Terraform, plus desired-state Git and remote state" />
-  <figcaption>UI and API on top; Git desired-state and remote Terraform state underneath.</figcaption>
+  <img src="/doc/img/diagrams/control-plane.svg" alt="Control plane: grid-ui to grid-core to engines to targets, plus intent Git and state/GitOps" />
+  <figcaption>UI and API on top; intent Git and state / cluster GitOps underneath.</figcaption>
 </figure>
 
 ## Components

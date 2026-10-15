@@ -26,7 +26,7 @@ hide_title: true
 </div>
 
 <figure className="grid-figure">
-  <img src="/doc/img/diagrams/desired-state-loop.png" alt="Control loop: author JSON, sync, plan/apply by engine, state and monitor" />
+  <img src="/doc/img/diagrams/desired-state-loop.svg" alt="Control loop: author JSON, sync, plan/apply by engine, state and monitor" />
   <figcaption>Author → Sync → Plan/Apply (by engine) → State &amp; monitor. Everything else wraps this loop.</figcaption>
 </figure>
 
