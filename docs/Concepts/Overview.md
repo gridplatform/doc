@@ -10,16 +10,17 @@ This section defines the vocabulary Grid uses end-to-end. Read it before authori
 
 | Concept | Meaning |
 |---------|---------|
-| **Desired state** | Git-tracked JSON that declares what *should* exist |
-| **Unit** | One JSON file → one infrastructure identity → one Terraform root |
+| **Intent (desired state)** | Git-tracked JSON that declares what *should* exist |
+| **Unit** | One JSON file → one inventory identity → one engine root (Terraform workspace **or** workload release) |
+| **Engine** | How a unit is realized — `terraform` today; `kubernetes` (GitOps) gated |
 | **Project** | Boundary / app slug (`projects/<slug>/…`) |
 | **Cloud / provider** | Path segment and `provider` field (`aws`, `gcp`, `azure`, …) |
 | **Environment** | Path segment and `metadata.environment` (`development`, `staging`, `production`, or custom) |
 | **Sync** | Pull Git → upsert inventory → mark missing paths stale |
 | **Release** | Plan / apply / destroy job with logs, audit, optional approval |
-| **Module bank** | Versioned Terraform modules (`grid-terraform`) |
-| **Archive** | Generated instance Terraform next to intent — the [exit ramp](./Exit_Ramp.md) |
-| **Remote state** | Shared Terraform state backend for all units on a control plane |
+| **Module bank** | Versioned Terraform modules (`grid-terraform`) for the terraform engine |
+| **Archive** | Generated instance Terraform next to intent — part of the [exit ramp](./Exit_Ramp.md) |
+| **Remote state** | Shared Terraform state backend for terraform-engine units on a control plane |
 | **Catalog** | Known subtypes per provider (CLI maturity + console flags) |
 
 ## End-to-end path
@@ -28,9 +29,9 @@ This section defines the vocabulary Grid uses end-to-end. Read it before authori
 Author JSON in Git
   → Sync into GRID_CONFIG_ROOT
   → Unit appears in Infrastructure (if console catalog allows)
-  → Plan release (Terraform plan)
-  → Apply release (Terraform apply) when approved / allowed
-  → State written to remote backend; archive/ refreshed
+  → Plan / apply release via the unit’s engine:
+       · terraform → plan/apply + remote state + archive/
+       · kubernetes   → cluster GitOps (when enabled)
   → Optional metrics labeled with grid_unit_id
 ```
 
@@ -44,15 +45,17 @@ Author JSON in Git
 | Plan / apply / destroy | [Release lifecycle](./Release_Lifecycle.md) |
 | Modules & pins | [Module bank](./Module_Bank.md) |
 | State + archive | [Archive and remote state](./Archive_And_Remote_State.md) |
-| Leaving Grid without a black box | [Exit ramp](./Exit_Ramp.md) |
+| In-cluster apps / Argo | [Kubernetes workloads](./Kubernetes_Workloads.md) |
+| Leaving without a black box | [Exit ramp](./Exit_Ramp.md) |
 
 ## Design principles (why it feels this way)
 
-1. **Path is identity.** Renaming a file path changes how state and archive are addressed unless you migrate deliberately.
-2. **Reference, don’t merge.** `dependsOn` wires `terraform_remote_state`; dependents are separate applies.
-3. **Git delete ≠ cloud delete.** Stale is an operator signal; destroy is explicit.
-4. **Console flags ≠ CLI capability.** UI may hide unreleased providers while CLI still generates for registered catalogs.
-5. **Host monitoring is separate.** Prometheus runs beside Grid, not inside the Compose app containers.
+1. **Path is identity.** Renaming a file path changes how state, archive, and inventory are addressed unless you migrate deliberately.
+2. **Reference, don’t merge.** `dependsOn` wires remote state (terraform); dependents remain separate applies.
+3. **Git delete ≠ cloud / cluster delete.** Stale is an operator signal; destroy is explicit.
+4. **Console flags ≠ CLI capability.** UI may hide unreleased providers or engines while underlying adapters exist.
+5. **Engines share Sync and RBAC.** Terraform and Kubernetes workloads differ in *how* they apply, not in who owns intent.
+6. **Host monitoring is separate.** Prometheus runs beside Grid, not inside the Compose app containers.
 
 ## Related
 

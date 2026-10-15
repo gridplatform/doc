@@ -34,7 +34,7 @@ What Grid is **shipping**, **hardening**, and **explicitly not done yet**. Prefe
 
 | Area | Status | Notes |
 |------|--------|-------|
-| **Kubernetes workloads (Argo / OpenShift GitOps)** | Gated (`kubernetesWorkloads: false`; API rejects engine) | Cluster/node-pool **Terraform** units already exist; in-cluster Application CD is next |
+| **Kubernetes workloads (Argo / OpenShift GitOps)** | Gated (`kubernetesWorkloads: false`; API rejects engine) | Docs: [Kubernetes workloads](./Concepts/Kubernetes_Workloads.md). Cluster/node-pool **Terraform** units already exist; in-cluster Application CD is next |
 | **APM console** | Flag off | Domain reserved in RBAC |
 | **Logging console** | Flag off | Domain reserved in RBAC |
 | **OIDC / SSO** | Planned | Local auth first |
@@ -54,4 +54,6 @@ When those disagree, the per-provider Clouds pages win — start with [AWS](./Cl
 ## Related
 
 - [About Grid](./Home.md)
+- [Kubernetes workloads](./Concepts/Kubernetes_Workloads.md)
+- [Exit ramp](./Concepts/Exit_Ramp.md)
 - [Feature flags](./Console/Feature_Flags.md)

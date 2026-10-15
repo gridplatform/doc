@@ -40,12 +40,13 @@ From a unit you typically can:
 | Engine | Today |
 |--------|-------|
 | `terraform` | Default for cloud modules / clusters / node pools |
-| `kubernetes` | Workload engine UI and API path gated — future Argo path |
+| `kubernetes` | Workload engine UI and API path gated — Argo / OpenShift GitOps |
 
-Managed Kubernetes **clusters** remain Terraform units on this page; they are not the gated workload engine.
+Managed Kubernetes **clusters** remain Terraform units on this page; they are not the gated workload engine. Full story: [Kubernetes workloads](../Concepts/Kubernetes_Workloads.md).
 
 ## Related
 
 - [GitOps sync](../Concepts/GitOps_Sync.md)
+- [Kubernetes workloads](../Concepts/Kubernetes_Workloads.md)
 - [Unit JSON](../Concepts/Unit_JSON.md)
 - [Feature flags](./Feature_Flags.md)

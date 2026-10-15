@@ -9,7 +9,7 @@ import type * as Preset from '@docusaurus/preset-classic';
  */
 const config: Config = {
   title: 'About Grid',
-  tagline: 'Self-hosted infrastructure orchestration',
+  tagline: 'Self-hosted orchestration — cloud, GitOps, and workloads',
   favicon: 'img/favicon-32x32.png',
 
   url: 'https://gridplatform.github.io',
@@ -85,11 +85,6 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/Concepts/Desired_State',
-          label: 'Desired state',
-          position: 'left',
-        },
-        {
           href: 'https://github.com/gridplatform',
           label: 'GitHub',
           position: 'right',
@@ -104,15 +99,15 @@ const config: Config = {
           items: [
             { label: 'About Grid', to: '/' },
             { label: 'Quick start', to: '/Getting-Started/Quick_Start' },
-            { label: 'Your desired-state repo', to: '/Getting-Started/Your_Desired_State_Repo' },
+            { label: 'Install', to: '/Install/Overview' },
           ],
         },
         {
           title: 'Deep dives',
           items: [
-            { label: 'Desired state', to: '/Concepts/Desired_State' },
+            { label: 'Exit ramp', to: '/Concepts/Exit_Ramp' },
+            { label: 'Kubernetes workloads', to: '/Concepts/Kubernetes_Workloads' },
             { label: 'AWS catalog', to: '/Clouds/AWS' },
-            { label: 'Configuration', to: '/Install/Configuration' },
             { label: 'Roadmap', to: '/Roadmap' },
           ],
         },

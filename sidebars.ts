@@ -29,6 +29,7 @@ const sidebars: SidebarsConfig = {
         'Concepts/Release_Lifecycle',
         'Concepts/Module_Bank',
         'Concepts/Archive_And_Remote_State',
+        'Concepts/Kubernetes_Workloads',
         'Concepts/Exit_Ramp',
       ],
     },

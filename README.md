@@ -1,6 +1,6 @@
 # About Grid
 
-Product documentation for [Grid Platform](https://github.com/gridplatform) — desired-state GitOps, multi-cloud Terraform orchestration, console, CLI, and install.
+Product documentation for [Grid Platform](https://github.com/gridplatform) — Git-backed intent, multi-cloud Terraform orchestration, Kubernetes workload GitOps (gated), console, CLI, and install.
 
 **Site:** [https://gridplatform.github.io/doc/](https://gridplatform.github.io/doc/)  
 **Source of truth:** Markdown under [`docs/`](docs/) (also readable on GitHub).
