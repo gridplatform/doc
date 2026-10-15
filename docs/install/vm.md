@@ -7,12 +7,12 @@ title: Install on a VM
 Target: Ubuntu 22.04 / 24.04, outbound HTTPS. Installer lives in **[grid-core/install](https://github.com/gridplatform/grid-core/tree/main/install)**.
 
 > **Remote state first**  
-> Whether this VM is on AWS, GCP, or Azure, **create a remote Terraform state backend before applying real infra**.  
-> Local state on the VM is lab-only. See **[Remote Terraform state](./remote-state.md)** (`s3` / `gcs` / `azurerm`), then set `GRID_TF_*` in `/etc/grid/grid.env` or Compose `.env`.
+> Create a remote Terraform state backend before applying real infra (S3, GCS, Azure, OCI, OSS, COS, or S3-compatible).  
+> Local state on the VM is lab-only. See **[Remote Terraform state](./Remote_State.md)**, then set `GRID_TF_*` in Compose `.env` / `/etc/grid/grid.env`.
 
 ## Recommended: Compose on the VM (default)
 
-Runs **everything in Docker** on that VM (`core` + `ui`). Same stack as [Docker Compose](./docker-compose.md).
+Runs **everything in Docker** on that VM (`core` + `ui`). Same stack as [Docker Compose](./Docker_Compose.md).
 
 ```bash
 export GRID_AUTH_ADMIN_PASSWORD='choose-a-strong-password'
@@ -104,7 +104,7 @@ sudo systemctl enable --now grid-core nginx
 
 ## Configuration
 
-See [Configuration](./configuration.md). Defaults pull desired-state from [grid-config](https://github.com/gridplatform/grid-config) and modules from [grid-terraform](https://github.com/gridplatform/grid-terraform).
+See [Configuration](./Configuration.md). Defaults pull desired-state from [grid-config](https://github.com/gridplatform/grid-config) and modules from [grid-terraform](https://github.com/gridplatform/grid-terraform).
 
 ## Smoke check
 

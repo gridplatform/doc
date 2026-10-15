@@ -1,40 +1,84 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
-/**
- * Optional — used only if you run Docusaurus later.
- * Primary reading surface is GitHub (README + docs/**/*.md).
- */
 const sidebars: SidebarsConfig = {
   docs: [
-    'intro',
-    'organizations',
+    'Home',
+    'What_Is_Grid',
     {
       type: 'category',
-      label: 'Install',
+      label: 'Architecture',
+      items: ['Architecture/Control_Plane'],
+    },
+    {
+      type: 'category',
+      label: 'Getting-Started',
       collapsed: false,
       items: [
-        'install/overview',
-        'install/remote-state',
-        'install/vm',
-        'install/docker-compose',
-        'install/configuration',
+        'Getting-Started/Quick_Start',
+        'Getting-Started/Your_Desired_State_Repo',
       ],
     },
     {
       type: 'category',
       label: 'Concepts',
-      items: ['concepts/overview'],
+      collapsed: false,
+      items: [
+        'Concepts/Overview',
+        'Concepts/Desired_State',
+        'Concepts/Unit_JSON',
+        'Concepts/GitOps_Sync',
+        'Concepts/Release_Lifecycle',
+        'Concepts/Module_Bank',
+        'Concepts/Archive_And_Remote_State',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Clouds',
+      items: [
+        'Clouds/Support_Matrix',
+        'Clouds/AWS',
+        'Clouds/GCP',
+        'Clouds/Azure_And_Others',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Console',
+      items: [
+        'Console/Overview',
+        'Console/Infrastructure',
+        'Console/Deployments_And_Releases',
+        'Console/Monitoring_And_Alerts',
+        'Console/Admin_And_Sources',
+        'Console/Feature_Flags',
+      ],
     },
     {
       type: 'category',
       label: 'Admin',
-      items: ['admin/rbac'],
+      items: ['Admin/Auth_RBAC_And_Approvals'],
     },
     {
       type: 'category',
       label: 'CLI',
-      items: ['cli/aws-gcp'],
+      items: ['CLI/Overview', 'CLI/Commands'],
     },
+    {
+      type: 'category',
+      label: 'Install',
+      items: [
+        'Install/Overview',
+        'Install/Remote_State',
+        'Install/VM',
+        'Install/Docker_Compose',
+        'Install/Dev_Vs_Prod',
+        'Install/Releases',
+        'Install/Configuration',
+        'Install/Monitoring',
+      ],
+    },
+    'Roadmap',
   ],
 };
 

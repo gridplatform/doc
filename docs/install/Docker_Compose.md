@@ -11,7 +11,7 @@ Compose definitions live in [`grid-core/install`](https://github.com/gridplatfor
 | `docker-compose.yml` | Build `core` and `ui` from source |
 | `docker-compose.release.yml` | Run pre-built images from GHCR |
 
-Version pins and channels: [Releases](./releases.md).
+Version pins and channels: [Releases](./Releases.md).
 
 ## Build from source
 
@@ -50,7 +50,7 @@ bash install/verify.sh
 - On a VM: enable Docker on boot, and optionally [`grid-compose.service`](https://github.com/gridplatform/grid-core/blob/main/install/systemd/grid-compose.service). Services use `restart: unless-stopped`.
 - **core** embeds grid-cli and Terraform. **ui** serves the console and proxies `/api` to core.
 - HTTP port: `GRID_HTTP_PORT` (default `80`). Open `http://<host>/`.
-- Before applying infrastructure, configure remote state (`GRID_TF_*`). See [Remote Terraform state](./remote-state.md).
+- Before applying infrastructure, configure remote state (`GRID_TF_*`). See [Remote Terraform state](./Remote_State.md).
 - **Metrics** are systemd units on the host (`install/monitoring/install-systemd.sh`). Grid `compose down` does not stop Prometheus/Alloy. See [MONITORING.md](https://github.com/gridplatform/grid-core/blob/main/docs/MONITORING.md).
 
 ## Environment variables
@@ -67,7 +67,7 @@ bash install/verify.sh
 | `GRID_RELEASE_CHANNEL` | `lts` or `current` (release compose) |
 | `GRID_VERSION` | Exact image tag (release compose) |
 
-Full list: [Configuration](./configuration.md) and [`install/.env.example`](https://github.com/gridplatform/grid-core/blob/main/install/.env.example).
+Full list: [Configuration](./Configuration.md) and [`install/.env.example`](https://github.com/gridplatform/grid-core/blob/main/install/.env.example).
 
 ## Volumes
 
@@ -109,4 +109,4 @@ docker compose -f install/docker-compose.release.yml --env-file install/.env up 
 
 ## Related
 
-[Install on a VM](./vm.md) · [Configuration](./configuration.md) · [Releases](./releases.md)
+[Install on a VM](./VM.md) · [Configuration](./Configuration.md) · [Releases](./Releases.md)

@@ -118,4 +118,4 @@ bash install/verify.sh
 
 ## Related
 
-[Docker Compose](./docker-compose.md) · [Configuration](./configuration.md) · [VM install](./vm.md)
+[Docker Compose](./Docker_Compose.md) · [Configuration](./Configuration.md) · [VM install](./VM.md)

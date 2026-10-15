@@ -1,39 +1,51 @@
 # Contributing to Grid Docs
 
-Thank you for contributing documentation to Grid Platform.
+Thank you for improving Grid’s documentation.
 
 ## How to contribute
 
-1. **Fork** [gridplatform/grid-docs](https://github.com/gridplatform/grid-docs)
-2. Create a branch: `git checkout -b docs/your-topic`
-3. Edit Markdown under `docs/` (and the root [README.md](README.md) if the landing TOC changes)
-4. Preview on GitHub (or locally in any Markdown viewer). Optional: `npm install && npm start` if you use Docusaurus later
-5. Open a **pull request** against `main`
+1. Fork [gridplatform/grid-docs](https://github.com/gridplatform/grid-docs)
+2. Branch: `git checkout -b docs/your-topic`
+3. Edit Markdown under `docs/`
+4. Env vars → edit `data/configuration.json` then `npm run sync:config`
+5. Preview: `npm ci && npm start`
+6. PR against `main`
 
-Do not push directly to `main`.
+## Naming convention
+
+Match Deep-Dive style (no numeric prefixes required):
+
+| Kind | Pattern | Examples |
+|------|---------|----------|
+| Folder | `Pascal-Case-With-Hyphens` | `Getting-Started`, `Concepts`, `Install` |
+| File | `Title_With_Underscores.md` | `Desired_State.md`, `Archive_And_Remote_State.md` |
 
 ## Where content goes
 
 | Topic | Path |
 |-------|------|
-| Landing / org quick start | `README.md` |
-| Install / VM / Compose / remote state | `docs/install/` |
-| Org adoption | `docs/organizations.md` |
-| Concepts | `docs/concepts/` |
-| Admin / RBAC / approvals | `docs/admin/` |
-| CLI guides | `docs/cli/` |
+| Product thesis | `docs/What_Is_Grid.md`, `docs/Architecture/` |
+| Onboarding | `docs/Getting-Started/` |
+| Desired state / sync / releases | `docs/Concepts/` |
+| Multi-cloud maturity | `docs/Clouds/` |
+| Console | `docs/Console/` |
+| RBAC | `docs/Admin/` |
+| CLI | `docs/CLI/` |
+| Install | `docs/Install/` |
+| Upcoming work | `docs/Roadmap.md` |
+| Env-var SoT | `data/configuration.json` |
 
-Install **scripts** belong in [grid-core/install](https://github.com/gridplatform/grid-core/tree/main/install) — link to them from these docs; do not duplicate shell scripts here.
+Do not duplicate install shell scripts here — link to [grid-core/install](https://github.com/gridplatform/grid-core/tree/main/install).
 
-## Style (GitHub-first)
+## Style
 
-- Use **relative links with `.md`** so GitHub navigates correctly (`./vm.md`, not `./vm`)
-- Prefer short pages with tables and copy-pasteable commands
-- Use blockquotes for callouts (`> **Tip:** …`) — avoid Docusaurus-only `:::tip` so pages render on GitHub
-- Link product repos with absolute `https://github.com/gridplatform/…` URLs
-- Call out lab vs production clearly (passwords, approval policies, public IPs)
-- Optional YAML front matter (`title:`) is fine for a future docs site
+- Deep and accurate over short marketing blurbs
+- Separate **samples / modules / CLI catalog / console flags** when maturity differs
+- Prefer tables and copy-pasteable commands
+- Use blockquotes for callouts so GitHub stays readable
+- Absolute GitHub URLs for other repos
+- Never document secrets; use placeholders
 
 ## License
 
-Contributions are under the MIT License (see [LICENSE](LICENSE)).
+MIT — see [LICENSE](LICENSE).

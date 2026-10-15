@@ -1,21 +1,35 @@
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+/**
+ * GitHub Pages (project site):
+ *   https://gridplatform.github.io/grid-docs/
+ *
+ * Custom domain later: set `url` to the domain and `baseUrl` to `/`.
+ */
 const config: Config = {
   title: 'Grid Platform Docs',
   tagline: 'Infrastructure orchestration — install, operate, extend',
-  url: 'https://docs.gridplatform.org',
-  baseUrl: '/',
+
+  url: 'https://gridplatform.github.io',
+  baseUrl: '/grid-docs/',
 
   organizationName: 'gridplatform',
   projectName: 'grid-docs',
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'throw',
 
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
+  },
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
 
   presets: [
@@ -25,6 +39,8 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
+          // Folder READMEs are for GitHub browsing only (not site routes).
+          exclude: ['**/README.md'],
           editUrl: 'https://github.com/gridplatform/grid-docs/edit/main/',
         },
         blog: false,
@@ -46,8 +62,13 @@ const config: Config = {
           label: 'Documentation',
         },
         {
+          href: 'https://github.com/gridplatform/grid-docs',
+          label: 'Edit on GitHub',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/gridplatform',
-          label: 'GitHub',
+          label: 'Org',
           position: 'right',
         },
       ],
@@ -58,8 +79,11 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            { label: 'Install overview', to: '/install/overview' },
-            { label: 'Install on a VM', to: '/install/vm' },
+            { label: 'What is Grid?', to: '/What_Is_Grid' },
+            { label: 'Desired state', to: '/Concepts/Desired_State' },
+            { label: 'Cloud matrix', to: '/Clouds/Support_Matrix' },
+            { label: 'Configuration', to: '/Install/Configuration' },
+            { label: 'Roadmap', to: '/Roadmap' },
           ],
         },
         {

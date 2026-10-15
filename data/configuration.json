@@ -1,0 +1,360 @@
+{
+  "$schemaComment": "Single source of truth for Grid env-var docs. Edit this file, then run: npm run sync:config",
+  "sources": {
+    "installEnv": "https://github.com/gridplatform/grid-core/blob/main/install/.env.example",
+    "coreEnv": "https://github.com/gridplatform/grid-core/blob/main/.env.example",
+    "uiEnv": "https://github.com/gridplatform/grid-ui/blob/main/.env.example",
+    "monitoring": "https://github.com/gridplatform/grid-core/tree/main/install/monitoring"
+  },
+  "sections": [
+    {
+      "id": "paths",
+      "title": "Paths & process",
+      "intro": "Core process paths. Install Compose uses defaults inside the container; override only when you know the layout.",
+      "vars": [
+        {
+          "name": "PORT",
+          "purpose": "API listen port (inside the process / container)",
+          "typical": "`3000`"
+        },
+        {
+          "name": "GRID_HTTP_PORT",
+          "purpose": "Host port published by Compose for the UI/proxy",
+          "typical": "`80`"
+        },
+        {
+          "name": "GRID_DATA_DIR",
+          "purpose": "JSON store (users, sessions, audit, releases)",
+          "typical": "`./data` or `/var/lib/grid/data`"
+        },
+        {
+          "name": "GRID_WORK_DIR",
+          "purpose": "Terraform workspaces fallback root",
+          "typical": "`./workspaces` or `/var/lib/grid/workspaces`"
+        },
+        {
+          "name": "GRID_CLI_ROOT",
+          "purpose": "Path to the `grid-cli` package",
+          "typical": "`../grid-cli` or `/opt/grid/grid-cli`"
+        },
+        {
+          "name": "GRID_CONFIG_ROOT",
+          "purpose": "Desired-state working tree (GitOps checkout target)",
+          "typical": "`./data/desired-state`"
+        },
+        {
+          "name": "GRID_TERRAFORM_BIN",
+          "purpose": "Terraform binary name or path",
+          "typical": "`terraform`"
+        },
+        {
+          "name": "GRID_CORS_ORIGIN",
+          "purpose": "Optional CORS allow-list (comma-separated origins). Empty = library default",
+          "typical": "`https://grid.example.com`"
+        }
+      ]
+    },
+    {
+      "id": "auth",
+      "title": "Auth",
+      "intro": "Bootstrap creates one superadmin. Change the password before any shared host.",
+      "vars": [
+        {
+          "name": "GRID_AUTH_ADMIN_EMAIL",
+          "purpose": "Bootstrap superadmin email",
+          "typical": "`admin@example.com`",
+          "required": true
+        },
+        {
+          "name": "GRID_AUTH_ADMIN_PASSWORD",
+          "purpose": "Bootstrap superadmin password (no placeholders). Keep in sync after `grid admin superadmin` rotates it",
+          "typical": "(strong secret)",
+          "required": true
+        },
+        {
+          "name": "GRID_AUTH_ADMIN_NAME",
+          "purpose": "Optional display name for the bootstrap user",
+          "typical": "`Grid Admin`"
+        },
+        {
+          "name": "GRID_AUTH_SESSION_TTL_HOURS",
+          "purpose": "API session length in hours",
+          "typical": "`168`"
+        },
+        {
+          "name": "GRID_AUTH_ALLOW_REGISTER",
+          "purpose": "Public self-register (`true`/`1`). Keep off for self-host",
+          "typical": "`false`"
+        },
+        {
+          "name": "GRID_AUTH_DISABLED",
+          "purpose": "Bypass auth — **dev only**, never on a public VM",
+          "typical": "`false`"
+        }
+      ]
+    },
+    {
+      "id": "gitops",
+      "title": "GitOps (desired-state sync)",
+      "intro": "When `GRID_GITOPS_REPO_URL` is set, Core clones/pulls into `GRID_CONFIG_ROOT`. Admins can also change settings in the console (Sources).",
+      "vars": [
+        {
+          "name": "GRID_GITOPS_REPO_URL",
+          "purpose": "Remote desired-state repo (fork of grid-config or your own)",
+          "typical": "`https://github.com/gridplatform/grid-config.git`"
+        },
+        {
+          "name": "GRID_GITOPS_BRANCH",
+          "purpose": "Branch to pull",
+          "typical": "`main`"
+        },
+        {
+          "name": "GRID_GITOPS_PATH",
+          "purpose": "Optional subdirectory under the clone (relative, no `..`)",
+          "typical": "(empty = repo root)"
+        },
+        {
+          "name": "GRID_GITOPS_SYNC_INTERVAL_SEC",
+          "purpose": "Auto pull + reconcile interval. Default `600` when a repo URL is set; `0` = manual only",
+          "typical": "`600`"
+        },
+        {
+          "name": "GRID_USE_DEMO",
+          "purpose": "Force demo-infra fixture path (local labs). Do not use in production",
+          "typical": "`false`"
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "title": "Module bank",
+      "intro": "Terraform modules consumed by generate. Prefer a **release tag**, not `main`.",
+      "vars": [
+        {
+          "name": "GRID_MODULE_BANK",
+          "purpose": "Module bank git URL or local path",
+          "typical": "`https://github.com/gridplatform/grid-terraform.git`"
+        },
+        {
+          "name": "GRID_MODULE_BANK_REF",
+          "purpose": "Branch or tag for the module bank",
+          "typical": "`v0.1.0`"
+        },
+        {
+          "name": "GRID_MODULE_BANK_SYNC_INTERVAL_SEC",
+          "purpose": "Auto-refresh local module-bank checkout (seconds). `0` = manual. Default `20` when unset",
+          "typical": "`20`"
+        },
+        {
+          "name": "GRID_MODULE_SOURCE",
+          "purpose": "Optional: force `remote` module sources in generated HCL",
+          "typical": "`remote`"
+        }
+      ]
+    },
+    {
+      "id": "tfstate",
+      "title": "Remote Terraform state",
+      "intro": "Required for production / install. Create the store before the first apply — see [Remote state](./Remote_State.md). The same bucket also stores the generated archive mirror.",
+      "vars": [
+        {
+          "name": "GRID_TF_BACKEND",
+          "purpose": "Backend kind",
+          "typical": "`s3` \\| `gcs` \\| `azurerm` \\| `oci` \\| `oss` \\| `cos` \\| `s3compat`",
+          "required": true
+        },
+        {
+          "name": "GRID_TF_STATE_BUCKET",
+          "purpose": "Bucket / container name (s3, gcs, oci, oss, cos, s3compat)",
+          "typical": "`mycompany-grid-tfstate`"
+        },
+        {
+          "name": "GRID_TF_LOCK_TABLE",
+          "purpose": "DynamoDB lock table (AWS S3 backend)",
+          "typical": "`mycompany-grid-tflock`"
+        },
+        {
+          "name": "GRID_TF_STATE_REGION",
+          "purpose": "Region for S3 / OSS / COS / s3compat",
+          "typical": "`us-east-1`"
+        },
+        {
+          "name": "GRID_TF_S3_ENDPOINT",
+          "purpose": "S3-compatible endpoint (OCI, Huawei OBS, Aliyun OSS, MinIO, …)",
+          "typical": "`https://obs.cn-north-1.myhuaweicloud.com`"
+        },
+        {
+          "name": "GRID_TF_S3_FORCE_PATH_STYLE",
+          "purpose": "Force path-style S3 addressing when the vendor requires it",
+          "typical": "`true`"
+        },
+        {
+          "name": "GRID_TF_AZURE_RESOURCE_GROUP",
+          "purpose": "Azure resource group (`azurerm`)",
+          "typical": "`grid-tfstate-rg`"
+        },
+        {
+          "name": "GRID_TF_AZURE_STORAGE_ACCOUNT",
+          "purpose": "Azure storage account (`azurerm`)",
+          "typical": "`gridtfstate`"
+        },
+        {
+          "name": "GRID_TF_AZURE_CONTAINER",
+          "purpose": "Azure blob container (`azurerm`)",
+          "typical": "`grid-tfstate`"
+        },
+        {
+          "name": "GRID_TF_OCI_NAMESPACE",
+          "purpose": "OCI Object Storage namespace",
+          "typical": "`<tenancy-namespace>`"
+        }
+      ]
+    },
+    {
+      "id": "monitoring",
+      "title": "Monitoring",
+      "intro": "Prometheus + Alertmanager run on the **host** (systemd or local binaries), not inside Grid Compose. Required for production boot. See [Monitoring](./Monitoring.md).",
+      "vars": [
+        {
+          "name": "GRID_PROMETHEUS_URL",
+          "purpose": "Prometheus query API base URL",
+          "typical": "`http://127.0.0.1:9090` or `http://host.docker.internal:9090`",
+          "required": true
+        },
+        {
+          "name": "GRID_ALERTMANAGER_URL",
+          "purpose": "Alertmanager API base URL",
+          "typical": "`http://127.0.0.1:9093` or `http://host.docker.internal:9093`",
+          "required": true
+        },
+        {
+          "name": "GRID_MONITORING_CONFIG_DIR",
+          "purpose": "Dir for alert `rules/` + `alertmanager.yml` written by the API",
+          "typical": "`./install/monitoring` or `/etc/prometheus`"
+        },
+        {
+          "name": "GRID_MONITORING_HOST_DIR",
+          "purpose": "Host path bind-mounted for Compose → systemd Prometheus config",
+          "typical": "`/etc/prometheus`"
+        },
+        {
+          "name": "GRID_PROMETHEUS_BEARER_TOKEN",
+          "purpose": "Optional bearer token for Prometheus",
+          "typical": "(secret)"
+        },
+        {
+          "name": "GRID_PROMETHEUS_BASIC_USER",
+          "purpose": "Optional basic-auth user for Prometheus",
+          "typical": ""
+        },
+        {
+          "name": "GRID_PROMETHEUS_BASIC_PASSWORD",
+          "purpose": "Optional basic-auth password for Prometheus",
+          "typical": "(secret)"
+        },
+        {
+          "name": "GRID_PROMETHEUS_TIMEOUT_MS",
+          "purpose": "Prometheus HTTP timeout",
+          "typical": "`8000`"
+        },
+        {
+          "name": "GRID_PROMETHEUS_CACHE_TTL_MS",
+          "purpose": "In-process metrics cache TTL",
+          "typical": "`20000`"
+        },
+        {
+          "name": "GRID_ALERTMANAGER_TIMEOUT_MS",
+          "purpose": "Alertmanager HTTP timeout",
+          "typical": "`8000`"
+        }
+      ]
+    },
+    {
+      "id": "argo",
+      "title": "Argo CD / OpenShift GitOps",
+      "intro": "Optional Kubernetes workload reconciler (Application CRD). Off by default.",
+      "vars": [
+        {
+          "name": "GRID_ARGO_ENABLED",
+          "purpose": "Enable Argo / OpenShift GitOps integration (`true`/`1`)",
+          "typical": "`false`"
+        },
+        {
+          "name": "GRID_ARGO_KUBECONFIG",
+          "purpose": "kubeconfig for the cluster where Argo runs (falls back to `KUBECONFIG`)",
+          "typical": "`/path/to/kubeconfig`"
+        },
+        {
+          "name": "GRID_ARGO_CONTEXT",
+          "purpose": "Optional kubectl context name",
+          "typical": ""
+        },
+        {
+          "name": "GRID_ARGO_NAMESPACE",
+          "purpose": "Namespace for Application CRs",
+          "typical": "`argocd`"
+        },
+        {
+          "name": "GRID_KUBECTL_BIN",
+          "purpose": "kubectl binary",
+          "typical": "`kubectl`"
+        }
+      ]
+    },
+    {
+      "id": "install",
+      "title": "Install / Compose pins",
+      "intro": "Used by `install/.env` and Compose. Not all apply to a bare `npm run prod` on a laptop.",
+      "vars": [
+        {
+          "name": "GRID_RELEASE_CHANNEL",
+          "purpose": "GHCR channel when using release Compose (`current` or `lts`)",
+          "typical": "`current`"
+        },
+        {
+          "name": "GRID_VERSION",
+          "purpose": "Exact image tag (overrides channel), e.g. `0.1.0`",
+          "typical": "`0.1.0`"
+        },
+        {
+          "name": "GRID_CORE_IMAGE",
+          "purpose": "Override core image reference",
+          "typical": "`ghcr.io/gridplatform/grid-core:0.1.0`"
+        },
+        {
+          "name": "GRID_UI_IMAGE",
+          "purpose": "Override UI image reference",
+          "typical": "`ghcr.io/gridplatform/grid-ui:0.1.0`"
+        },
+        {
+          "name": "GRID_CLI_REF",
+          "purpose": "Git ref when building CLI into the core image from source",
+          "typical": "`main` or `v0.1.0`"
+        },
+        {
+          "name": "GRID_UI_REF",
+          "purpose": "Git ref when building the UI image from source",
+          "typical": "`main` or `v0.1.0`"
+        },
+        {
+          "name": "TERRAFORM_VERSION",
+          "purpose": "Terraform version baked into the core image",
+          "typical": "`1.9.8`"
+        }
+      ]
+    },
+    {
+      "id": "ui",
+      "title": "Console (grid-ui)",
+      "intro": "Build-time Vite env. Production builds refuse to proceed without `VITE_GRID_API_URL`.",
+      "vars": [
+        {
+          "name": "VITE_GRID_API_URL",
+          "purpose": "Browser → API base path or absolute URL",
+          "typical": "`/api/v1` (Compose) or `http://localhost:3000/api/v1` (dev)",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

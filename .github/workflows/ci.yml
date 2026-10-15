@@ -16,4 +16,12 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
+      - run: npm run sync:config
+      - name: Ensure generated docs are committed
+        run: |
+          if ! git diff --quiet -- docs/Install/Configuration.md; then
+            echo "::error::docs/Install/Configuration.md is out of date. Run npm run sync:config and commit."
+            git --no-pager diff -- docs/Install/Configuration.md
+            exit 1
+          fi
       - run: npm run build

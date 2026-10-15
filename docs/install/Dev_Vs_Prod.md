@@ -26,7 +26,7 @@ Local / laptop: **`npm run dev`** + `.env.development`.
 
 Released module bank: `https://github.com/gridplatform/grid-terraform.git` @ **`v0.1.0`**.
 
-See [remote-state.md](./remote-state.md).
+See [Remote_State](./Remote_State.md).
 
 ## Compose (production only)
 
