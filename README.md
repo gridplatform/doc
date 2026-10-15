@@ -53,14 +53,11 @@ npm start          # http://localhost:3000/doc/
 npm run build
 ```
 
-GitHub Pages deploys the Docusaurus build to the **`gh-pages`** branch via `.github/workflows/deploy-pages.yml`.
+GitHub Pages is updated by `.github/workflows/deploy-pages.yml`: it publishes the Docusaurus `build/` to **`gh-pages`** and points the Pages source at that branch.
 
-One-time setup: **Settings → Pages → Build and deployment**
+Site: **https://gridplatform.github.io/doc/**
 
-- **Source:** Deploy from a branch  
-- **Branch:** `gh-pages` / `/ (root)`
-
-Do **not** point Pages at `main` — that serves the repo README and hides the docs sidebar.
+If the site ever shows a plain README again, Pages was switched back to `main` — re-run **Deploy docs** or set **Settings → Pages → Branch: `gh-pages` / (root)**.
 
 ## Documentation map
 
