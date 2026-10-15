@@ -12,8 +12,8 @@ Teams declare what should exist as **path-shaped JSON** in their own Git reposit
 
 This documentation is the product manual — not a marketing sketch. It covers how desired state is shaped, how sync and releases work, how the console and CLI relate, how every cloud folder in the platform fits today, and what is intentionally still ahead.
 
-**Live site:** [gridplatform.github.io/grid-docs](https://gridplatform.github.io/grid-docs/)  
-**Source:** [github.com/gridplatform/grid-docs](https://github.com/gridplatform/grid-docs)
+**Live site:** [gridplatform.github.io/doc](https://gridplatform.github.io/doc/)  
+**Source:** [github.com/gridplatform/doc](https://github.com/gridplatform/doc)
 
 ## Start here
 
@@ -40,4 +40,4 @@ This documentation is the product manual — not a marketing sketch. It covers h
 
 ## How to contribute to these docs
 
-Fork → branch → PR against `main`. Env-var tables are generated from [`data/configuration.json`](https://github.com/gridplatform/grid-docs/blob/main/data/configuration.json) — see [CONTRIBUTING.md](https://github.com/gridplatform/grid-docs/blob/main/CONTRIBUTING.md).
+Fork → branch → PR against `main`. Env-var tables are generated from [`data/configuration.json`](https://github.com/gridplatform/doc/blob/main/data/configuration.json) — see [CONTRIBUTING.md](https://github.com/gridplatform/doc/blob/main/CONTRIBUTING.md).

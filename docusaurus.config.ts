@@ -3,7 +3,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 /**
  * GitHub Pages (project site):
- *   https://gridplatform.github.io/grid-docs/
+ *   https://gridplatform.github.io/doc/
  *
  * Custom domain later: set `url` to the domain and `baseUrl` to `/`.
  */
@@ -12,10 +12,10 @@ const config: Config = {
   tagline: 'Infrastructure orchestration — install, operate, extend',
 
   url: 'https://gridplatform.github.io',
-  baseUrl: '/grid-docs/',
+  baseUrl: '/doc/',
 
   organizationName: 'gridplatform',
-  projectName: 'grid-docs',
+  projectName: 'doc',
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
@@ -41,7 +41,7 @@ const config: Config = {
           routeBasePath: '/',
           // Folder READMEs are for GitHub browsing only (not site routes).
           exclude: ['**/README.md'],
-          editUrl: 'https://github.com/gridplatform/grid-docs/edit/main/',
+          editUrl: 'https://github.com/gridplatform/doc/edit/main/',
         },
         blog: false,
         theme: {
@@ -62,7 +62,7 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/gridplatform/grid-docs',
+          href: 'https://github.com/gridplatform/doc',
           label: 'Edit on GitHub',
           position: 'right',
         },

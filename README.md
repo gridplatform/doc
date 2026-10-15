@@ -2,7 +2,7 @@
 
 Product documentation for [Grid Platform](https://github.com/gridplatform) — desired-state GitOps, multi-cloud Terraform orchestration, console, CLI, and install.
 
-**Site:** [https://gridplatform.github.io/grid-docs/](https://gridplatform.github.io/grid-docs/)  
+**Site:** [https://gridplatform.github.io/doc/](https://gridplatform.github.io/doc/)  
 **Source of truth:** Markdown under [`docs/`](docs/) (also readable on GitHub).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -49,12 +49,18 @@ CI fails if the generated file is stale.
 
 ```bash
 npm ci
-npm start          # http://localhost:3000/grid-docs/
+npm start          # http://localhost:3000/doc/
 npm run build
 ```
 
-GitHub Pages deploys from `main` via `.github/workflows/deploy-pages.yml`.  
-Enable **Settings → Pages → Source: GitHub Actions** once.
+GitHub Pages deploys the Docusaurus build to the **`gh-pages`** branch via `.github/workflows/deploy-pages.yml`.
+
+One-time setup: **Settings → Pages → Build and deployment**
+
+- **Source:** Deploy from a branch  
+- **Branch:** `gh-pages` / `/ (root)`
+
+Do **not** point Pages at `main` — that serves the repo README and hides the docs sidebar.
 
 ## Documentation map
 

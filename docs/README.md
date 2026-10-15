@@ -1,6 +1,6 @@
 # Documentation
 
-Full product manual for Grid (GitHub + [docs site](https://gridplatform.github.io/grid-docs/)).
+Full product manual for Grid (GitHub + [docs site](https://gridplatform.github.io/doc/)).
 
 | Section | Path |
 |---------|------|
@@ -16,4 +16,4 @@ Full product manual for Grid (GitHub + [docs site](https://gridplatform.github.i
 | Install | [Install/](Install/) |
 | Roadmap | [Roadmap.md](Roadmap.md) |
 
-Env-var tables are generated from [`data/configuration.json`](https://github.com/gridplatform/grid-docs/blob/main/data/configuration.json).
+Env-var tables are generated from [`data/configuration.json`](https://github.com/gridplatform/doc/blob/main/data/configuration.json).
