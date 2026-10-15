@@ -51,7 +51,7 @@ archive/projects/<project>/<cloud>/<env>/<type>/<name>/
   …
 ```
 
-CLI and Core regenerate this from JSON on generate / plan / deploy. Committing `archive/` is optional; it is the **plain-Terraform exit buffer** if you ever leave Grid.
+CLI and Core regenerate this from JSON on generate / plan / deploy. Committing `archive/` is optional; it is the **plain-Terraform exit buffer** if you ever leave Grid — see [Exit ramp](./Exit_Ramp.md).
 
 ## Environments in the path
 

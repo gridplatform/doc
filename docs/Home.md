@@ -7,7 +7,6 @@ hide_title: true
 ---
 
 <div className="grid-hero">
-  <img className="grid-hero__banner" src="/doc/img/banner.png" alt="" />
   <div className="grid-hero__inner">
     <img className="grid-hero__logo" src="/doc/img/logo.png" alt="Grid" />
     <div className="grid-hero__badge">Open source · Self-hosted</div>
@@ -38,7 +37,7 @@ Organizations use Grid when they want:
 1. **Declarative ownership** — infrastructure intent lives in Git you control, not only in a SaaS UI.
 2. **One control plane** — the same release path for plan, apply, and destroy, with audit and live logs.
 3. **Multi-cloud layout from day one** — path segments encode project, cloud, environment, and unit type, even when not every cloud is console-released yet.
-4. **An exit ramp** — generated Terraform under `archive/` is a plain-Terraform buffer, not a black box.
+4. **An exit ramp** — generated Terraform under `archive/` is ordinary HCL you can take with you; see [Exit ramp](./Concepts/Exit_Ramp.md).
 
 ## What Grid is not
 

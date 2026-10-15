@@ -18,7 +18,7 @@ This section defines the vocabulary Grid uses end-to-end. Read it before authori
 | **Sync** | Pull Git → upsert inventory → mark missing paths stale |
 | **Release** | Plan / apply / destroy job with logs, audit, optional approval |
 | **Module bank** | Versioned Terraform modules (`grid-terraform`) |
-| **Archive** | Generated instance Terraform next to intent (exit buffer) |
+| **Archive** | Generated instance Terraform next to intent — the [exit ramp](./Exit_Ramp.md) |
 | **Remote state** | Shared Terraform state backend for all units on a control plane |
 | **Catalog** | Known subtypes per provider (CLI maturity + console flags) |
 
@@ -44,6 +44,7 @@ Author JSON in Git
 | Plan / apply / destroy | [Release lifecycle](./Release_Lifecycle.md) |
 | Modules & pins | [Module bank](./Module_Bank.md) |
 | State + archive | [Archive and remote state](./Archive_And_Remote_State.md) |
+| Leaving Grid without a black box | [Exit ramp](./Exit_Ramp.md) |
 
 ## Design principles (why it feels this way)
 

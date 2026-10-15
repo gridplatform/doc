@@ -33,6 +33,8 @@ That directory is ordinary Terraform. Teams can:
 - Commit it next to JSON if they want Git history of HCL
 - Take over with plain Terraform if they leave Grid later
 
+How to walk away (or dual-run) without treating this as a “finished” checkbox: **[Exit ramp](./Exit_Ramp.md)** — one of the beauties of Grid.
+
 Default with a git module bank is remote `git::` module sources (no vendored copy) unless you set `GRID_MODULE_SOURCE`.
 
 ## Fallback workspaces
@@ -51,6 +53,7 @@ Cross-unit references rely on remote state data sources so VPC outputs (etc.) ar
 
 ## Related
 
+- [Exit ramp](./Exit_Ramp.md)
 - [Remote state install guide](../Install/Remote_State.md)
 - [Release lifecycle](./Release_Lifecycle.md)
 - [Module bank](./Module_Bank.md)
