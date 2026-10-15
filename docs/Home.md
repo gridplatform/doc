@@ -2,31 +2,77 @@
 sidebar_position: 1
 slug: /
 title: Grid Platform Docs
+hide_title: true
 ---
 
-# Grid Platform Docs
+<div className="grid-hero">
+  <img className="grid-hero__banner" src="/doc/img/banner.png" alt="" />
+  <div className="grid-hero__inner">
+    <img className="grid-hero__logo" src="/doc/img/logo.png" alt="Grid" />
+    <div className="grid-hero__badge">Open source · Self-hosted</div>
+    <h1>Infrastructure orchestration, declared in Git</h1>
+    <p>
+      Grid syncs path-shaped desired-state JSON, generates Terraform from a module bank,
+      runs plan / apply / destroy as releases with live logs, and optionally monitors
+      live units from the host.
+    </p>
+    <div className="grid-hero__actions">
+      <a className="primary" href="/doc/Getting-Started/Quick_Start">Quick start</a>
+      <a className="secondary" href="/doc/What_Is_Grid">What is Grid?</a>
+      <a className="secondary" href="https://github.com/gridplatform/doc">Edit on GitHub</a>
+    </div>
+  </div>
+</div>
 
-**Grid** is an open-source, self-hosted control plane for cloud infrastructure.
-
-Teams declare what should exist as **path-shaped JSON** in their own Git repository. Grid syncs that tree, generates Terraform from a shared module bank, runs plan / apply / destroy as **releases** with live logs, stores state remotely, and optionally monitors live units from the host.
-
-This documentation is the product manual — not a marketing sketch. It covers how desired state is shaped, how sync and releases work, how the console and CLI relate, how every cloud folder in the platform fits today, and what is intentionally still ahead.
-
-**Live site:** [gridplatform.github.io/doc](https://gridplatform.github.io/doc/)  
-**Source:** [github.com/gridplatform/doc](https://github.com/gridplatform/doc)
+<figure className="grid-figure">
+  <img src="/doc/img/diagrams/desired-state-loop.svg" alt="Desired-state loop: author JSON, sync, plan/apply, state and monitor" />
+  <figcaption>The product loop — everything else wraps this.</figcaption>
+</figure>
 
 ## Start here
 
-| If you want to… | Read |
-|-----------------|------|
-| Understand what Grid is for | [What is Grid?](./What_Is_Grid.md) |
-| See how the pieces fit | [Architecture](./Architecture/Control_Plane.md) |
-| Stand up a control plane | [Quick start](./Getting-Started/Quick_Start.md) |
-| Own your desired-state Git repo | [Your desired-state repository](./Getting-Started/Your_Desired_State_Repo.md) |
-| Author unit JSON correctly | [Desired-state layout](./Concepts/Desired_State.md) · [Unit JSON](./Concepts/Unit_JSON.md) |
-| See cloud maturity honestly | [Cloud support matrix](./Clouds/Support_Matrix.md) |
-| Operate the console | [Console overview](./Console/Overview.md) |
-| See what is next | [Roadmap](./Roadmap.md) |
+<div className="grid-cards">
+  <a className="grid-card" href="/doc/What_Is_Grid">
+    <span className="grid-card__eyebrow">Product</span>
+    <span className="grid-card__title">What is Grid?</span>
+    <span className="grid-card__desc">Why it exists and how the pieces fit.</span>
+  </a>
+  <a className="grid-card" href="/doc/Architecture/Control_Plane">
+    <span className="grid-card__eyebrow">Architecture</span>
+    <span className="grid-card__title">Control plane</span>
+    <span className="grid-card__desc">UI, Core, CLI, module bank, your Git remote.</span>
+  </a>
+  <a className="grid-card" href="/doc/Getting-Started/Quick_Start">
+    <span className="grid-card__eyebrow">Install</span>
+    <span className="grid-card__title">Quick start</span>
+    <span className="grid-card__desc">Compose on a VM, then Sync and Plan.</span>
+  </a>
+  <a className="grid-card" href="/doc/Getting-Started/Your_Desired_State_Repo">
+    <span className="grid-card__eyebrow">GitOps</span>
+    <span className="grid-card__title">Your desired-state repo</span>
+    <span className="grid-card__desc">Own the SoT — don’t fork the sample for prod.</span>
+  </a>
+  <a className="grid-card" href="/doc/Concepts/Desired_State">
+    <span className="grid-card__eyebrow">Concepts</span>
+    <span className="grid-card__title">Desired-state layout</span>
+    <span className="grid-card__desc">Path rules, units, dependsOn, archive.</span>
+  </a>
+  <a className="grid-card" href="/doc/Clouds/Support_Matrix">
+    <span className="grid-card__eyebrow">Clouds</span>
+    <span className="grid-card__title">Support matrix</span>
+    <span className="grid-card__desc">Honest maturity across console, CLI, and modules.</span>
+  </a>
+  <a className="grid-card" href="/doc/Console/Overview">
+    <span className="grid-card__eyebrow">Console</span>
+    <span className="grid-card__title">Operator UI</span>
+    <span className="grid-card__desc">Infrastructure, releases, monitoring, admin.</span>
+  </a>
+  <a className="grid-card" href="/doc/Roadmap">
+    <span className="grid-card__eyebrow">Status</span>
+    <span className="grid-card__title">Roadmap</span>
+    <span className="grid-card__desc">Shipped, hardening, and clearly upcoming.</span>
+  </a>
+</div>
 
 ## Product repositories
 
@@ -38,6 +84,6 @@ This documentation is the product manual — not a marketing sketch. It covers h
 | [grid-terraform](https://github.com/gridplatform/grid-terraform) | Module bank consumed by generate |
 | [grid-config](https://github.com/gridplatform/grid-config) | **Example** desired-state tree — learn and copy; do not use as production SoT |
 
-## How to contribute to these docs
+## Contribute
 
 Fork → branch → PR against `main`. Env-var tables are generated from [`data/configuration.json`](https://github.com/gridplatform/doc/blob/main/data/configuration.json) — see [CONTRIBUTING.md](https://github.com/gridplatform/doc/blob/main/CONTRIBUTING.md).

@@ -4,7 +4,14 @@ title: What is Grid?
 
 # What is Grid?
 
+<img src="/doc/img/logo.png" alt="Grid logo" width="72" style={{marginBottom: '1rem'}} />
+
 Grid is a **self-hosted infrastructure orchestration platform**. It sits between your Git repository of desired-state JSON and the Terraform that actually creates resources in cloud accounts.
+
+<figure className="grid-figure">
+  <img src="/doc/img/diagrams/desired-state-loop.svg" alt="Desired-state loop" />
+  <figcaption>Author → Sync → Plan/Apply → State &amp; monitor.</figcaption>
+</figure>
 
 It is built for organizations that want:
 

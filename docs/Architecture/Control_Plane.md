@@ -6,6 +6,11 @@ title: Control plane
 
 Grid’s control plane is four cooperating repositories plus your desired-state Git remote.
 
+<figure className="grid-figure">
+  <img src="/doc/img/diagrams/control-plane.svg" alt="Control plane: grid-ui to grid-core to grid-cli to Terraform, plus desired-state Git and remote state" />
+  <figcaption>UI and API on top; Git desired-state and remote Terraform state underneath.</figcaption>
+</figure>
+
 ## Components
 
 | Component | Package | Responsibility |
@@ -15,27 +20,6 @@ Grid’s control plane is four cooperating repositories plus your desired-state 
 | **Generator / CLI** | [grid-cli](https://github.com/gridplatform/grid-cli) | Turns unit JSON into Terraform; plan / deploy / destroy; catalog maturity metadata |
 | **Module bank** | [grid-terraform](https://github.com/gridplatform/grid-terraform) | Versioned Terraform modules referenced by generate |
 | **Desired state** | **Your** Git repo (samples in [grid-config](https://github.com/gridplatform/grid-config)) | Source of truth for what *should* exist |
-
-```text
-┌─────────────┐     HTTPS      ┌──────────────────┐
-│  grid-ui    │ ─────────────► │    grid-core     │
-│  (nginx)    │   /api/v1      │  API + runner    │
-└─────────────┘                └────────┬─────────┘
-                                        │ spawn
-                                        ▼
-                               ┌──────────────────┐
-                               │    grid-cli      │
-                               │  generate/plan   │
-                               └────────┬─────────┘
-                                        │ modules
-                                        ▼
-                               ┌──────────────────┐
-                               │ grid-terraform   │
-                               │  (git tag pin)   │
-                               └──────────────────┘
-
-GRID_CONFIG_ROOT ◄── clone/pull ── your desired-state Git remote
-```
 
 ## Runtime data (not the source of truth)
 

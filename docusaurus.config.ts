@@ -9,7 +9,8 @@ import type * as Preset from '@docusaurus/preset-classic';
  */
 const config: Config = {
   title: 'Grid Platform Docs',
-  tagline: 'Infrastructure orchestration — install, operate, extend',
+  tagline: 'Self-hosted infrastructure orchestration',
+  favicon: 'img/favicon-32x32.png',
 
   url: 'https://gridplatform.github.io',
   baseUrl: '/doc/',
@@ -39,7 +40,6 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
-          // Folder READMEs are for GitHub browsing only (not site routes).
           exclude: ['**/README.md'],
           editUrl: 'https://github.com/gridplatform/doc/edit/main/',
         },
@@ -52,18 +52,46 @@ const config: Config = {
   ],
 
   themeConfig: {
+    image: 'img/og.jpg',
+    colorMode: {
+      defaultMode: 'light',
+      respectPrefersColorScheme: true,
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
+    },
     navbar: {
       title: 'Grid Docs',
+      logo: {
+        alt: 'Grid',
+        src: 'img/logo.png',
+        srcDark: 'img/logo.png',
+        width: 28,
+        height: 28,
+      },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'docs',
           position: 'left',
-          label: 'Documentation',
+          label: 'Docs',
+        },
+        {
+          to: '/Getting-Started/Quick_Start',
+          label: 'Quick start',
+          position: 'left',
+        },
+        {
+          to: '/Concepts/Desired_State',
+          label: 'Desired state',
+          position: 'left',
         },
         {
           href: 'https://github.com/gridplatform/doc',
-          label: 'Edit on GitHub',
+          label: 'GitHub',
           position: 'right',
         },
         {
@@ -77,9 +105,16 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Start',
           items: [
             { label: 'What is Grid?', to: '/What_Is_Grid' },
+            { label: 'Quick start', to: '/Getting-Started/Quick_Start' },
+            { label: 'Your desired-state repo', to: '/Getting-Started/Your_Desired_State_Repo' },
+          ],
+        },
+        {
+          title: 'Deep dives',
+          items: [
             { label: 'Desired state', to: '/Concepts/Desired_State' },
             { label: 'Cloud matrix', to: '/Clouds/Support_Matrix' },
             { label: 'Configuration', to: '/Install/Configuration' },
@@ -97,7 +132,10 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Grid Platform. MIT.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Grid Platform · MIT`,
+    },
+    prism: {
+      additionalLanguages: ['bash', 'json', 'hcl', 'yaml'],
     },
   } satisfies Preset.ThemeConfig,
 };
