@@ -6,7 +6,7 @@ title: Exit ramp
 
 The **exit ramp** is one of the beauties of Grid — not a checklist item you “finish,” and not a trapdoor out of a black box.
 
-Grid is opinionated about how you **author** and **operate** (Git-backed intent, Sync, releases, RBAC). It is deliberately **not** opinionated about locking you into Grid forever. Whatever engine ran the unit — **Terraform today**, **Kubernetes workload GitOps** as that path lands — you keep portable artifacts and standard tools.
+Grid is opinionated about how you **author** and **operate** (Git-backed intent, Sync, releases, RBAC). It is deliberately **not** opinionated about locking you into Grid. Whatever engine ran the unit — Terraform or Kubernetes workload GitOps — you keep portable artifacts and standard tools.
 
 That is the point: control-plane ergonomics **and** a clean handoff when you want to dual-run or leave.
 
@@ -16,7 +16,7 @@ That is the point: control-plane ergonomics **and** a clean handoff when you wan
 |----------|--------|----------------|
 | **`archive/` HCL** | Terraform | Instance Terraform — readable, reviewable, runnable with plain `terraform` |
 | **Remote state** | Terraform | Standard backends (`GRID_TF_*`); not a proprietary state format |
-| **Git intent** | All engines | Desired-state JSON (and workload manifests / Application specs as that model ships) stay in **your** repo |
+| **Git intent** | All engines | Desired-state JSON, including workload intent, stays in **your** repo |
 | **Cluster GitOps** | Kubernetes workloads | Argo CD / OpenShift GitOps (or the cluster’s own tools) can keep reconciling without Core / UI |
 
 Nothing here requires a special “Grid export” product. The ramp is the normal operating path made first-class.

@@ -11,13 +11,9 @@ Grid generates `backend.tf` and `terraform_remote_state` for `dependsOn` from th
 
 ## Supported backends
 
-Grid targets **global** control planes — not only AWS/GCP/Azure. Every mode
-below also mirrors generated Terraform under `archive/` in the same store.
+Every mode below also mirrors generated Terraform under `archive/` in the same store.
 
-**Important:** the *module bank provider* (where you deploy VPC/VM/…) is
-independent of where you store state. One Grid install picks **one** remote
-store for all units. You can deploy Tencent modules while keeping state on AWS
-S3 — or host state on the same cloud as the modules.
+The module-bank provider (where a unit is deployed) is independent of where you store state. One Grid install picks **one** remote store for all units. That store can be the same vendor as the modules, or a different one.
 
 ### Backend modes
 

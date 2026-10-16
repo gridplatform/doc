@@ -4,55 +4,25 @@ title: Cloud accounts and credentials
 
 # Cloud accounts and credentials
 
-How the **control plane host** authenticates to cloud APIs when Grid runs generate / plan / apply. This is install/ops — not the per-provider catalog pages under [Clouds](../Clouds/AWS.md).
+How the **control plane host** authenticates when Grid runs generate / plan / apply. This is install and operations. Subtype vocabulary lives on the [provider catalogs](../Clouds/Overview.md).
 
 Desired-state JSON must never contain long-lived cloud keys.
 
 ## Principles
 
-1. Prefer **instance roles / workload identity / OIDC** on the Grid VM or Compose host.
-2. Ambient credentials on the host (env, metadata service, shared config) are fine for labs.
-3. **Remote state** backend is chosen once for the control plane and is independent of which module-bank clouds you deploy — see [Remote Terraform state](./Remote_State.md).
+1. Prefer **instance roles, workload identity, or OIDC** on the Grid VM or Compose host.
+2. Ambient credentials on the host (environment, metadata service, shared config) match a local Terraform run against that provider.
+3. The **remote state** backend is chosen once for the control plane. It is independent of which providers the units target — see [Remote Terraform state](./Remote_State.md).
+4. Credential variable names are the provider SDK’s names (`AWS_*`, `GOOGLE_*`, `ARM_*`, and the equivalents for other clouds). Grid does not invent a second credential format.
 
-## AWS
+## State store versus target provider
 
-Typical for labs: instance profile, or `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` / `AWS_REGION` on the host.
+One install picks **one** state backend for every unit. Units may target any catalog provider. State can live on the same vendor as the modules, or on a different store (including an S3-compatible endpoint).
 
-When state lives on S3:
-
-```bash
-GRID_TF_BACKEND=s3
-GRID_TF_STATE_BUCKET=…
-GRID_TF_LOCK_TABLE=…
-GRID_TF_STATE_REGION=us-east-1
-```
-
-## GCP
-
-Application Default Credentials on the host, or a service-account JSON mounted for the Core process.
-
-```bash
-GRID_TF_BACKEND=gcs
-GRID_TF_STATE_BUCKET=…
-```
-
-## Azure
-
-Azure CLI / managed identity / service principal env vars as used by the Terraform AzureRM provider.
-
-```bash
-GRID_TF_BACKEND=azurerm
-GRID_TF_AZURE_RESOURCE_GROUP=…
-GRID_TF_AZURE_STORAGE_ACCOUNT=…
-GRID_TF_AZURE_CONTAINER=grid-tfstate
-```
-
-## Other clouds
-
-Oracle, Alibaba, Tencent, Huawei, OVH, IBM, CtrlS, Yotta, and S3-compatible stores use the backends listed in [Remote Terraform state](./Remote_State.md) (`oci`, `oss`, `cos`, `s3compat`, …). Configure provider credentials the same way you would for a local Terraform CLI run against that cloud.
+Configure the backend with `GRID_TF_*` as documented in [Remote Terraform state](./Remote_State.md). Configure provider credentials the same way you would for Terraform CLI on that host.
 
 ## Related
 
 - [Remote Terraform state](./Remote_State.md)
 - [Configuration](./Configuration.md)
-- [AWS catalog](../Clouds/AWS.md) · [GCP](../Clouds/GCP.md) · [Azure](../Clouds/Azure.md)
+- [Provider catalogs](../Clouds/Overview.md)

@@ -10,32 +10,33 @@ Every desired-state file is a JSON document Grid and the CLI understand. Below i
 
 ```json
 {
-  "provider": "aws",
-  "project": "grid-labs",
-  "region": "us-east-1",
+  "provider": "<provider>",
+  "project": "<project>",
+  "region": "<region-or-location>",
   "metadata": {
-    "name": "grid-labs-vpc",
-    "description": "Network fabric",
+    "name": "<unit-name>",
+    "description": "What this unit is for",
     "environment": "development",
-    "kind": "vpc",
-    "modulePath": "aws/vpc"
+    "kind": "<subtype>",
+    "modulePath": "<provider>/<subtype>"
   },
   "resources": [
     {
-      "type": "vpc",
-      "name": "grid-labs-vpc",
-      "role": "primary",
-      "cidr": "10.50.0.0/16"
+      "type": "<subtype>",
+      "name": "<unit-name>",
+      "role": "primary"
     }
   ]
 }
 ```
 
+`<provider>` is any catalog id. `<subtype>` is a type from that provider’s catalog (`supported` or `planned`). Property fields beyond `type`, `name`, and `role` are subtype-specific.
+
 ## Top-level fields
 
 | Field | Required | Notes |
 |-------|----------|-------|
-| `provider` | yes | Must match catalog / path cloud (`aws`, `gcp`, …) |
+| `provider` | yes | Must match the catalog id and the path’s provider segment |
 | `project` | recommended | Should match `projects/<slug>` |
 | `region` | usually | Cloud region / location for the unit |
 | `metadata` | yes | Identity and linkage |
@@ -49,7 +50,7 @@ Every desired-state file is a JSON document Grid and the CLI understand. Below i
 | `description` | Human summary |
 | `environment` | Must match path environment segment |
 | `kind` | Catalog subtype word (same vocabulary as console / CLI) |
-| `modulePath` | Module bank path hint (e.g. `aws/vpc`) |
+| `modulePath` | Module bank path (`<provider>/<subtype>`) |
 | `dependsOn` | Array of **project-relative** paths to other units |
 | `id` | Optional stable UUID — only if **you** set it; Grid does not require committing this |
 
@@ -57,7 +58,7 @@ Every desired-state file is a JSON document Grid and the CLI understand. Below i
 
 ```json
 "dependsOn": [
-  "aws/development/vpc/grid-labs-vpc.json"
+  "<provider>/<environment>/<type>/<unit>.json"
 ]
 ```
 
@@ -69,11 +70,11 @@ Important:
 - Grid emits `terraform_remote_state` (or equivalent wiring) so the dependent root can read outputs.
 - Apply order is an operator concern (apply VPC before VM).
 
-Example from the labs sample — EC2 depending on VPC:
+Example — a compute unit depending on a network unit in the same project:
 
 ```text
-projects/grid-labs/aws/development/ec2/grid-labs-vm.json
-  metadata.dependsOn → aws/development/vpc/grid-labs-vpc.json
+projects/<project>/<provider>/<environment>/<compute-type>/<name>.json
+  metadata.dependsOn → <provider>/<environment>/<network-type>/<name>.json
 ```
 
 ## `resources[]`
@@ -82,7 +83,7 @@ Each entry is a typed object:
 
 | Field | Purpose |
 |-------|---------|
-| `type` | Catalog subtype (`vpc`, `ec2-instance`, `subnet`, …) |
+| `type` | Catalog subtype for that provider |
 | `name` | Resource local name |
 | `role` | Often `primary` or `support` for folded helpers (e.g. subnets beside a VPC) |
 | … | Type-specific properties (`cidr`, `machineType`, rules, …) |

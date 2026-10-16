@@ -28,11 +28,11 @@ Most lists filter to that pair. Unit counts exclude stale/destroyed and console-
 | Alerts | `/alerts` | Alertmanager firings |
 | Admin | `/admin` | Users, groups, environments, sources, audit, about |
 
-Hidden by product flags today: **APM**, **Logging**, **Kubernetes workloads** engine UI — see [Feature flags](./Feature_Flags.md) and [Roadmap](../Roadmap.md).
+Product flags can hide **APM**, **Logging**, and the **Kubernetes workloads** engine UI — see [Feature flags](./Feature_Flags.md).
 
 ## Sources (GitOps settings)
 
-Desired-state remote and module bank are configured under **Admin → Sources** (legacy `/gitops` redirects here). Naming keeps “GitOps” free for future Kubernetes CD terminology.
+Desired-state remote and module bank are configured under **Admin → Sources** (legacy `/gitops` redirects here). “GitOps” in the product name for in-cluster CD stays separate from Sources.
 
 ## Auth
 

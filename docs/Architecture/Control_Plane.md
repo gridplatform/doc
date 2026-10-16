@@ -4,7 +4,7 @@ title: Control plane
 
 # Control plane
 
-Grid’s control plane is four cooperating repositories plus your intent Git remote. It orchestrates **engines** — Terraform for cloud infrastructure today, and Kubernetes workload GitOps (Argo / OpenShift) as that path releases — under one Sync, release, and RBAC model.
+Grid’s control plane is four cooperating repositories plus your intent Git remote. It orchestrates **engines** — Terraform for cloud infrastructure, and Kubernetes workload GitOps (Argo / OpenShift) for in-cluster workloads — under one Sync, release, and RBAC model.
 
 <figure className="grid-figure">
   <img src="/doc/img/diagrams/control-plane.svg" alt="Control plane: grid-ui to grid-core to engines to targets, plus intent Git and state/GitOps" />
@@ -15,7 +15,7 @@ Grid’s control plane is four cooperating repositories plus your intent Git rem
 
 | Component | Package | Responsibility |
 |-----------|---------|----------------|
-| **API & runner** | [grid-core](https://github.com/gridplatform/grid-core) | Auth, inventory, Sync, release orchestration, Terraform runner, gated Argo/workload path, monitoring APIs, install |
+| **API & runner** | [grid-core](https://github.com/gridplatform/grid-core) | Auth, inventory, Sync, release orchestration, Terraform runner, Kubernetes GitOps path, monitoring APIs, install |
 | **Console** | [grid-ui](https://github.com/gridplatform/grid-ui) | Browser UX: workspace, Infrastructure, Deployments, Releases, Monitoring, Admin |
 | **Generator / CLI** | [grid-cli](https://github.com/gridplatform/grid-cli) | Terraform generate / plan / deploy / destroy; catalog maturity metadata |
 | **Module bank** | [grid-terraform](https://github.com/gridplatform/grid-terraform) | Versioned Terraform modules referenced by generate |
@@ -38,7 +38,7 @@ Under Core’s data directories you will also see:
 | User action | Typical path |
 |-------------|--------------|
 | Sync desired state | `POST /api/v1/gitops/sync` → upsert / stale |
-| Plan / apply from console | Release + lifecycle → engine (`terraform` CLI today; `kubernetes` GitOps when enabled) |
+| Plan / apply from console | Release + lifecycle → the unit’s engine (`terraform` or `kubernetes` GitOps) |
 | Live logs | SSE `GET /api/v1/deployments/:id/logs/stream` |
 | Drift check | Compare content hash / `terraform plan` signals |
 | Monitoring | Query Prometheus / Alertmanager URLs configured on the host |

@@ -21,9 +21,9 @@ Source: [`grid-ui/src/config/featureFlags.ts`](https://github.com/gridplatform/g
 
 ## Provider release flags
 
-`consoleProviderRelease.<provider>` gates whether that cloud appears as a released console offering. **AWS is true**; other providers are false until product declares them.
+`consoleProviderRelease.<provider>` gates whether that provider appears as a released console offering. The flag is per provider id. It does not change catalog status or CLI generate.
 
-`deployFlags[provider][subtype]` further toggles individual types inside a released provider.
+`deployFlags[provider][subtype]` further toggles individual types inside a provider the console already shows.
 
 ## Catalog visibility helpers
 
@@ -31,5 +31,5 @@ List rows use visibility helpers (`visible` / `hidden` / `invalid`) so disabled 
 
 ## Related
 
-- [AWS catalog](../Clouds/AWS.md)
+- [Provider catalogs](../Clouds/Overview.md)
 - [Roadmap](../Roadmap.md)

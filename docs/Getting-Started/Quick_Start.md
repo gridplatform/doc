@@ -31,7 +31,7 @@ cd grid-core
 cp install/.env.example install/.env
 # Set at minimum:
 #   GRID_AUTH_ADMIN_PASSWORD
-#   GRID_TF_BACKEND + bucket/lock/region (or Azure/OCI/… equivalents)
+#   GRID_TF_BACKEND + the variables for that backend
 #   GRID_GITOPS_REPO_URL=https://github.com/<you>/<your-desired-state>.git
 #   GRID_PROMETHEUS_URL / GRID_ALERTMANAGER_URL (host monitoring)
 bash install/compose-up.sh
@@ -63,4 +63,4 @@ Full variable reference: [Configuration](../Install/Configuration.md).
 
 - [Desired-state layout](../Concepts/Desired_State.md)
 - [Console overview](../Console/Overview.md)
-- [AWS catalog](../Clouds/AWS.md)
+- [Provider catalogs](../Clouds/Overview.md)

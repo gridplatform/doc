@@ -11,7 +11,7 @@ The public [grid-config](https://github.com/gridplatform/grid-config) repository
 ## Recommended setup
 
 1. Create a **new empty repository** under your org on **any Git host** (GitHub, GitLab, Bitbucket, Gitea, …). **Private repos are expected** for real orgs.
-2. Copy a minimal tree from `grid-config` (for example one project, one cloud, one environment, one VPC unit).
+2. Copy a minimal tree from `grid-config` (one project, one cloud, one environment, one unit).
 3. Replace every `REPLACE_*` / lab CIDR / account-specific value.
 4. Point Grid at that remote (clean URL — no token in the URL):
 
@@ -57,7 +57,7 @@ Full rules: [Desired-state layout](../Concepts/Desired_State.md).
 |----|--------|
 | PR JSON changes; review like application code | Hand-edit the live `GRID_CONFIG_ROOT` clone and expect it to survive Sync |
 | Keep secrets out of JSON (use cloud IAM / secret refs) | Commit long-lived cloud keys |
-| One unit ≈ one engine root (Terraform today; workloads when enabled) | Stuff unrelated stacks into a single giant JSON |
+| One unit ≈ one engine root (Terraform workspace or Kubernetes workload) | Stuff unrelated stacks into a single giant JSON |
 | Use `metadata.dependsOn` for cross-unit references | Assume Grid merges dependent units into one apply |
 
 ## How Grid uses the repo

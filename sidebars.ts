@@ -37,6 +37,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Clouds',
       items: [
+        'Clouds/Overview',
         'Clouds/AWS',
         'Clouds/GCP',
         'Clouds/Azure',

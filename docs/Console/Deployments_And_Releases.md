@@ -10,7 +10,7 @@ The Deployments area is where operators start **plan** or **apply** style runs a
 
 Picker contents respect:
 
-- Console provider release (today: AWS)
+- Console provider release (`consoleProviderRelease.<provider>`)
 - Per-type deploy flags
 - Product flags (`deployments`, `kubernetesWorkloads`, …)
 
@@ -33,4 +33,4 @@ When an environment requires approval, write releases wait in a pending state un
 ## Related
 
 - [Release lifecycle](../Concepts/Release_Lifecycle.md)
-- [AWS catalog](../Clouds/AWS.md)
+- [Provider catalogs](../Clouds/Overview.md)

@@ -17,7 +17,7 @@ That backend is used for:
 
 Backends include `s3`, `gcs`, `azurerm`, `oci`, `oss`, `cos`, `s3compat`, and lab-only `local`. Full matrix and bootstrap scripts: [Remote Terraform state](../Install/Remote_State.md).
 
-**Important:** state backend ≠ module cloud. You can deploy Tencent modules while storing state on AWS S3, or keep state on the same vendor as the modules.
+**State backend and target provider are independent.** One control plane stores state in a single backend. Units may target any catalog provider, on that same vendor or another.
 
 ## Archive (exit buffer)
 

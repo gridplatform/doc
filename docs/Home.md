@@ -14,10 +14,10 @@ hide_title: true
     </div>
     <h1>About Grid</h1>
     <p>
-      Grid is a self-hosted infrastructure orchestration platform. You declare what
-      should exist as path-shaped JSON in Git; Grid syncs that tree and runs
-      plan / apply / destroy as releases — across cloud infrastructure today and
-      Kubernetes workload GitOps as that engine lands — with optional host monitoring.
+      Grid is a self-hosted control plane. You describe what should exist as JSON
+      in Git — a project, a cloud, an environment, and a unit. Grid syncs that
+      tree and runs plan, apply, and destroy the same way on every cloud. Each
+      cloud has its own catalog of what Grid can build there.
     </p>
     <div className="grid-hero__actions">
       <a className="primary" href="/doc/Getting-Started/Quick_Start">Quick start</a>
@@ -34,17 +34,17 @@ hide_title: true
 
 Organizations use Grid when they want:
 
-1. **Declarative ownership** — intent lives in Git you control, not only in a SaaS UI.
-2. **One control plane** — the same release path for plan, apply, and destroy, with audit and live logs — whether the unit is cloud infrastructure or (as it ships) an in-cluster workload.
-3. **Multi-cloud layout from day one** — path segments encode project, cloud, environment, and unit type, even when not every cloud is console-released yet.
-4. **An exit ramp** — portable artifacts and standard tools, not a black box; see [Exit ramp](./Concepts/Exit_Ramp.md).
+1. **Intent you own** — the JSON lives in a Git repository you control.
+2. **One release path** — plan, apply, and destroy, with audit and live logs, for every cloud and every engine.
+3. **A catalog per cloud** — the path shape is the same; the types Grid builds are that cloud’s catalog. See [provider catalogs](./Clouds/Overview.md).
+4. **An exit ramp** — generated Terraform and your Git history stay usable with ordinary tools. See [Exit ramp](./Concepts/Exit_Ramp.md).
 
-## Engines (not Terraform-only)
+## Engines
 
-| Engine | Operates | Status |
-|--------|----------|--------|
-| **Terraform** | Cloud resources, managed clusters, node pools, module-bank subtypes | Shipped |
-| **Kubernetes workloads** | In-cluster apps via GitOps (Argo CD / OpenShift GitOps) | Gated — see [Kubernetes workloads](./Concepts/Kubernetes_Workloads.md) |
+| Engine | Operates |
+|--------|----------|
+| **Terraform** | Cloud resources, managed clusters, node pools, and other module-bank subtypes |
+| **Kubernetes workloads** | In-cluster apps via GitOps (Argo CD / OpenShift GitOps) — [Kubernetes workloads](./Concepts/Kubernetes_Workloads.md) |
 
 Managed **clusters** are Terraform units. **Workloads inside** those clusters are the separate kubernetes engine. Details live in the sidebar under Concepts.
 
@@ -52,10 +52,9 @@ Managed **clusters** are Terraform units. **Workloads inside** those clusters ar
 
 | Not this | Because |
 |----------|---------|
-| A hosted SaaS | You run **grid-core** + **grid-ui** on your VM or Compose host |
-| A replacement for Terraform or Argo | Grid **orchestrates** them — generate/run Terraform today; drive workload GitOps as that path releases |
-| “Just AWS tooling” | The platform models **many clouds**; per-service status lives under [Clouds](./Clouds/AWS.md) |
-| Auto-destroy on Git delete | Removing JSON marks units **stale**; destroy requires an explicit action |
+| A hosted SaaS | You run **grid-core** and **grid-ui** on your own VM or Compose host |
+| A replacement for Terraform or Argo | Grid runs them. Terraform units become HCL. Kubernetes units become cluster GitOps |
+| Automatic destroy when JSON is deleted | A missing file is marked **stale**. Destroy is a separate release |
 
 ## How it works
 
@@ -70,8 +69,8 @@ Your Git repo (intent JSON)
         │  plan · apply · destroy (releases)
         ▼
   Engine:
-    · terraform → generate + module bank → remote state + archive/
-    · kubernetes   → cluster GitOps (Argo / OpenShift) when enabled
+    · terraform   → generate + module bank → remote state + archive/
+    · kubernetes  → cluster GitOps (Argo / OpenShift)
         │
         ▼
   Optional host Prometheus / Alertmanager
@@ -83,7 +82,7 @@ That loop is the product. RBAC, approvals, Sources, Monitoring, and Topology wra
 
 | Actor | Responsibility |
 |-------|----------------|
-| **Operators / platform** | Install Core + UI, remote state, module bank pin, Git remote, auth bootstrap; later, cluster GitOps connectivity |
+| **Operators / platform** | Install Core + UI, remote state, module bank pin, Git remote, auth bootstrap, and cluster GitOps connectivity for workload units |
 | **App / infra authors** | Own the intent repository; open PRs for JSON (and workload) changes |
 | **Approvers** | Gate apply/destroy where environment policy requires it |
 | **CLI users** | Same generate/plan/deploy path on a **local** machine with cloud credentials (Grid AuthZ is not applied to raw CLI) |
@@ -111,10 +110,10 @@ That loop is the product. RBAC, approvals, Sources, Monitoring, and Topology wra
     <span className="grid-card__title">Exit ramp</span>
     <span className="grid-card__desc">Leave with Terraform and/or cluster GitOps — no lock-in.</span>
   </a>
-  <a className="grid-card" href="/doc/Clouds/AWS">
+  <a className="grid-card" href="/doc/Clouds/Overview">
     <span className="grid-card__eyebrow">Clouds</span>
     <span className="grid-card__title">Provider catalogs</span>
-    <span className="grid-card__desc">Per-cloud type/subtype — supported or planned.</span>
+    <span className="grid-card__desc">What Grid builds on each cloud.</span>
   </a>
   <a className="grid-card" href="/doc/Install/Overview">
     <span className="grid-card__eyebrow">Operate</span>

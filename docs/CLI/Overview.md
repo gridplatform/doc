@@ -33,11 +33,11 @@ Core injects `GRID_*` paths into child processes via `cliChildEnv` so generate f
 
 ## Catalog maturity
 
-Each provider page under [Clouds](../Clouds/AWS.md) lists subtypes as `supported` or `planned` (anything not released yet is planned). That is separate from console feature flags.
+Each provider page under [Clouds](../Clouds/Overview.md) lists subtypes as `supported` or `planned`. That is separate from console feature flags.
 
-## Multi-cloud
+## Providers
 
-The CLI registers all platform provider ids. Practical generate support is strongest for **AWS** and **GCP** today; other clouds follow catalog status. Always plan before apply on new types.
+The CLI registers every platform provider id. Generate follows catalog status for that subtype: `supported` produces a root, `planned` is vocabulary only. Plan before apply whenever you use a subtype you have not applied on that control plane before.
 
 ## AuthZ reminder
 

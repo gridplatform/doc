@@ -4,52 +4,41 @@ title: Roadmap
 
 # Roadmap
 
-What Grid is **shipping**, **hardening**, and **explicitly not done yet**. Prefer this page + upstream STATUS notes over guessing from sample JSON.
+How Grid grows without changing the model. Per-provider subtype status lives on the [catalog pages](./Clouds/Overview.md), not here.
 
-## Done (core product loop)
+## The loop that stays
 
-| Area | Notes |
-|------|-------|
+| Area | What it means |
+|------|----------------|
 | Desired-state Git Sync | Upsert + stale; no auto-destroy |
-| Terraform generate via CLI + module bank | Archive / workspaces |
-| Releases with live logs | Plan / apply / destroy |
+| Engines | Terraform generate via the CLI and module bank; Kubernetes workload GitOps on the same release path |
+| Releases | Plan / apply / destroy with live logs, audit, and optional approval |
 | Console | Infrastructure, Deployments, Releases, Topology, Monitoring, Alerts, Admin |
-| Auth + RBAC + env approvals | Local users, groups, domains |
-| Remote state multi-backend | S3 / GCS / Azure / OCI / OSS / COS / S3-compat |
-| Host monitoring integration | Prometheus + Alertmanager + Alloy |
-| AWS console release surface | Primary UI cloud |
-| AWS catalog subtypes | Documented as `supported` under [Clouds/AWS](./Clouds/AWS.md) |
+| Auth | Local users, groups, domains, environment approvals |
+| Remote state | One control-plane backend, independent of which provider a unit targets |
+| Host monitoring | Prometheus + Alertmanager + Alloy beside Grid |
 
-## In progress
+## What moves independently
 
-| Area | Notes |
-|------|-------|
-| Broader console cloud release | GCP and others behind `consoleProviderRelease` |
-| GCP and other catalogs | Documented as `planned` until released — see [Clouds/GCP](./Clouds/GCP.md) |
-| Azure / other CLI catalogs | Moving subtypes from planned → supported |
-| Packaging / release polish | GHCR channels, `install/releases.json` — [Releases](./Install/Releases.md) · [Downloads](./Install/Downloads.md) |
-| Hardening AWS on real VMs | Production soak |
+| Surface | How it advances |
+|---------|-----------------|
+| **Catalog** | A subtype moves from `planned` to `supported` on that provider’s page when generate is real |
+| **Console** | `consoleProviderRelease` and `deployFlags` show a provider or subtype in the UI without changing the CLI |
+| **Engines** | `kubernetesWorkloads` exposes in-cluster GitOps. Managed clusters stay Terraform units |
+| **Packaging** | Platform tags and changelogs: [Releases](./Install/Releases.md) · [Downloads](./Install/Downloads.md) |
 
-## Upcoming / gated
+When samples, modules, the CLI catalog, and console flags disagree, the [provider catalog](./Clouds/Overview.md) is the vocabulary and the flags are only the UI.
 
-| Area | Status | Notes |
-|------|--------|-------|
-| **Kubernetes workloads (Argo / OpenShift GitOps)** | Gated (`kubernetesWorkloads: false`; API rejects engine) | Docs: [Kubernetes workloads](./Concepts/Kubernetes_Workloads.md). Cluster/node-pool **Terraform** units already exist; in-cluster Application CD is next |
-| **APM console** | Flag off | Domain reserved in RBAC |
-| **Logging console** | Flag off | Domain reserved in RBAC |
-| **OIDC / SSO** | Planned | Local auth first |
-| **grid-operator** | Planned repo | CRDs — not on the Compose install path yet |
-| **grid-ml** | Planned repo | Assistant / ML — not required to run Grid |
-| **Private GitHub Pages for docs** | Needs Enterprise Cloud | Public Pages works on Free orgs |
+## Adjacent surfaces
 
-## How we talk about clouds in docs
+These sit beside the loop. They are not required to run Grid.
 
-- **Samples** show the target multi-cloud layout.
-- **Modules** may be scaffolds.
-- **CLI catalog** is the generate truth.
-- **Console flags** are the UI truth.
-
-When those disagree, the per-provider Clouds pages win — start with [AWS](./Clouds/AWS.md).
+| Area | Role |
+|------|------|
+| **APM / Logging consoles** | Reserved product flags and RBAC domains |
+| **OIDC / SSO** | Identity in front of the same local RBAC model |
+| **grid-operator** | Cluster CRDs — not on the Compose install path |
+| **grid-ml** | Assistant / ML — not required to run Grid |
 
 ## Related
 

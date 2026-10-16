@@ -6,10 +6,10 @@ title: Kubernetes workloads
 
 Grid is **not only a Terraform control plane**. The product model is one Git-backed desired-state tree and one release loop; **how** a unit is realized depends on its **engine**.
 
-| Engine | What it operates | Status today |
-|--------|------------------|--------------|
-| **`terraform`** | Cloud modules, managed clusters, node pools, most catalog subtypes | Shipped — generate / plan / apply via [grid-cli](https://github.com/gridplatform/grid-cli) |
-| **`kubernetes`** | In-cluster workloads (Applications, Helm, Kustomize, Jobs, …) via **GitOps** (Argo CD / OpenShift GitOps) | **Gated** — API and console behind `kubernetesWorkloads` / `GRID_ARGO_*`; see [Roadmap](../Roadmap.md) |
+| Engine | What it operates |
+|--------|------------------|
+| **`terraform`** | Cloud modules, managed clusters, node pools, and other catalog subtypes — generate / plan / apply via [grid-cli](https://github.com/gridplatform/grid-cli) |
+| **`kubernetes`** | In-cluster workloads (Applications, Helm, Kustomize, Jobs, …) via **GitOps** (Argo CD / OpenShift GitOps). Exposed when `kubernetesWorkloads` is on |
 
 ## Two different “Kubernetes” ideas
 
@@ -17,15 +17,15 @@ Do not confuse them:
 
 | Kind | Engine | Example |
 |------|--------|---------|
-| **Managed cluster / node pool** | `terraform` | EKS, GKE, AKS units in the cloud catalog |
+| **Managed cluster / node pool** | `terraform` | Cluster and node-pool subtypes in the provider catalog |
 | **Workloads inside a cluster** | `kubernetes` | Deployments, Helm releases, Application CRs reconciled by Argo |
 
 Clusters are infrastructure. Workloads are continuous delivery on top of a cluster. Grid is designed to own **both** under the same project / environment / RBAC story.
 
 ## What GitOps means here
 
-1. **Desired-state Sync** (already shipped) — Grid pulls **your** Git repo of path-shaped JSON into inventory. That is shared for every engine.
-2. **Workload GitOps** (onboarding) — for `kubernetes` units, apply does **not** mean `terraform apply`. It means Grid drives (or hands off to) a cluster GitOps reconciler so the cluster converges on the workload intent you declared.
+1. **Desired-state Sync** — Grid pulls **your** Git repo of path-shaped JSON into inventory. That is shared for every engine.
+2. **Workload GitOps** — for `kubernetes` units, apply does **not** mean `terraform apply`. It means Grid drives (or hands off to) a cluster GitOps reconciler so the cluster converges on the workload intent you declared.
 
 Naming in the console keeps **Sources** for the desired-state remote so “GitOps” can mean in-cluster CD without colliding with Sync settings — [Console overview](../Console/Overview.md).
 
@@ -37,7 +37,7 @@ Workload units still live under the same path grammar:
 projects/<project>/<cloud-or-platform>/<environment>/<infra-type>/<name>.json
 ```
 
-The JSON carries engine metadata and workload kind (Application, Helm, Kustomize, CronJob, …). Exact fields land with the gated release; treat samples and API contracts in grid-core as source of truth when the flag flips.
+The JSON carries engine metadata and workload kind (Application, Helm, Kustomize, CronJob, …). Field names follow the API contract in grid-core for that engine.
 
 RBAC already reserves a **kubernetes** domain for view / apply when the engine is enabled — [Auth, RBAC, and approvals](../Admin/Auth_RBAC_And_Approvals.md).
 

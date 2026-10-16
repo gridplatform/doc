@@ -32,13 +32,13 @@ Modules are grouped by provider folder:
 aws/…  gcp/…  azure/…  oracle/…  alibaba/…  tencent/…  huawei/…  …
 ```
 
-Unit JSON often carries `metadata.modulePath` (e.g. `aws/vpc`) so generate knows which module to bind.
+Unit JSON carries `metadata.modulePath` (`<provider>/<subtype>`) so generate knows which module to bind.
 
 ## Maturity
 
 Having a folder in the bank does **not** always mean “console-released” or “CLI supported”. Cross-check:
 
-1. Provider catalog under [Clouds](../Clouds/AWS.md)
+1. Provider catalog under [Clouds](../Clouds/Overview.md)
 2. CLI `grid providers` / resource catalog status
 3. Console `consoleProviderRelease` (UI-only gate)
 

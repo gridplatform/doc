@@ -38,7 +38,7 @@ Active line, including beta tags (`vX.Y.Z-beta.N`) when published.
 - Auth, RBAC, and environment approvals
 - Remote Terraform state (S3, GCS, Azure, OCI, OSS, COS, S3-compat)
 - Host monitoring (Prometheus, Alertmanager, Alloy)
-- AWS console surface
+- Console provider catalogs (shown per `consoleProviderRelease`)
 - VM `install.sh` and Compose images
 - HTTPS intent-repo auth required in production (username, token, expiry)
 

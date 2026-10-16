@@ -86,7 +86,7 @@ That is intentional. State backend choice for the **control plane** is independe
 | Project | Intent |
 |---------|--------|
 | `demo-app` | Broad example matrix across clouds and types |
-| `grid-labs` | Smaller lab path (e.g. VPC + EC2) useful for first Sync/Plan |
+| `grid-labs` | A smaller tree, useful for a first Sync and Plan |
 
 ## Related
 
