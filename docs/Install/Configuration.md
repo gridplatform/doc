@@ -48,20 +48,18 @@ Bootstrap creates one superadmin. Change the password before any shared host.
 
 ## GitOps (intent sync)
 
-When `GRID_GITOPS_REPO_URL` is set, Core clones/pulls into `GRID_CONFIG_ROOT`. Works with any Git host. Prefer a clean URL. **Production (`npm run prod`) refuses to start** if the URL is HTTPS and username + host token + expiry are not all present (env or Admin → Sources / `gitops-secrets.json`). SSH remotes skip this check (use a deploy key on the host).
+When `GRID_GITOPS_REPO_URL` is set, Core clones/pulls into `GRID_CONFIG_ROOT`. Works with any Git host. Prefer a clean URL. **Production (`npm run prod`) hard-fails HTTPS remotes without username + host token + expiry** (env or Admin → Sources). SSH remotes use host deploy keys instead.
 
 | Variable | Required | Purpose | Typical |
 |----------|----------|---------|---------|
-| `GRID_GITOPS_REPO_URL` | ✓ | Intent repo URL (HTTPS or SSH) — any Git provider | `https://git.example.com/org/intent.git` |
+| `GRID_GITOPS_REPO_URL` | yes | Intent repo URL (HTTPS or SSH) — any Git provider | `https://git.example.com/org/intent.git` |
 | `GRID_GITOPS_BRANCH` |  | Branch to pull | `main` |
 | `GRID_GITOPS_PATH` |  | Optional subdirectory under the clone (relative, no `..`) | (empty = repo root) |
 | `GRID_GITOPS_SYNC_INTERVAL_SEC` |  | Auto pull + reconcile interval. Default `600` when a repo URL is set; `0` = manual only | `600` |
-| `GRID_GITOPS_USERNAME` | ✓\* | HTTPS username for the host token (`git`, GitLab `oauth2`, Bitbucket `x-token-auth`, …) | `git` |
-| `GRID_GITOPS_TOKEN` | ✓\* | Host-issued PAT/deploy token for HTTPS remotes (Grid does not generate it). Also accepted from `GRID_DATA_DIR/gitops-secrets.json` after Sources | `ghp_…` / deploy token |
-| `GRID_GITOPS_TOKEN_EXPIRES_AT` | ✓\* | Expiry (`YYYY-MM-DD`) of that host token — required with HTTPS auth in production | `2027-01-15` |
+| `GRID_GITOPS_USERNAME` | yes | Required for HTTPS intent remotes in production (`git`, GitLab `oauth2`, Bitbucket `x-token-auth`, …). Also stored in `gitops-secrets.json` via Admin → Sources. Not required for SSH remotes. | `git` |
+| `GRID_GITOPS_TOKEN` | yes | Required for HTTPS intent remotes in production (host-issued PAT/deploy token; Grid does not generate it). Also accepted from `GRID_DATA_DIR/gitops-secrets.json` after Admin → Sources. Not required for SSH remotes. | `ghp_…` / deploy token (or unset once secrets file is populated) |
+| `GRID_GITOPS_TOKEN_EXPIRES_AT` | yes | Required with HTTPS auth in production (`YYYY-MM-DD` from your Git host). Also stored via Sources as authExpiresAt / secrets `tokenExpiresAt`. | `2027-01-15` |
 | `GRID_USE_DEMO` |  | Force demo-infra fixture path (local labs). Do not use in production | `false` |
-
-\*Required for **HTTPS** intent remotes in production (all three: username, token, expiry). Not required when using an **SSH** remote.
 
 ## Module bank
 
