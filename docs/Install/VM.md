@@ -115,8 +115,10 @@ See [Configuration](./Configuration.md). Defaults pull desired-state from [grid-
 
 ## Pin a release
 
+Same script URL — change the tag (or use a channel). Full matrix: [Releases](./Releases.md).
+
 ```bash
-export GRID_REF=v0.1.0   # when tags exist
+export GRID_REF=v0.1.0
 export GRID_AUTH_ADMIN_PASSWORD='…'
 curl -fsSL https://raw.githubusercontent.com/gridplatform/grid-core/${GRID_REF}/install/install.sh | sudo -E bash
 ```

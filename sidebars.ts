@@ -14,7 +14,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'Getting-Started/Quick_Start',
-        'Getting-Started/Your_Desired_State_Repo',
+        'Getting-Started/Your_Intent_Repository',
       ],
     },
     {
@@ -88,6 +88,7 @@ const sidebars: SidebarsConfig = {
         'Install/Docker_Compose',
         'Install/Dev_Vs_Prod',
         'Install/Releases',
+        'Install/Downloads',
         'Install/Configuration',
         'Install/Monitoring',
       ],

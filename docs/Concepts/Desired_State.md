@@ -91,5 +91,5 @@ That is intentional. State backend choice for the **control plane** is independe
 ## Related
 
 - [Unit JSON](./Unit_JSON.md)
-- [Your desired-state repository](../Getting-Started/Your_Desired_State_Repo.md)
+- [Your intent repository](../Getting-Started/Your_Intent_Repository.md)
 - [grid-config README](https://github.com/gridplatform/grid-config#readme)

@@ -64,7 +64,7 @@ bash install/verify.sh
 | `GRID_CLI_REF` | grid-cli git ref for source builds |
 | `GRID_UI_REF` | grid-ui git ref for source builds |
 | `GRID_UI_CONTEXT` | Override UI build context |
-| `GRID_RELEASE_CHANNEL` | `lts` or `current` (release compose) |
+| `GRID_RELEASE_CHANNEL` | `current` or `lts` (release compose) |
 | `GRID_VERSION` | Exact image tag (release compose) |
 
 Full list: [Configuration](./Configuration.md) and [`install/.env.example`](https://github.com/gridplatform/grid-core/blob/main/install/.env.example).

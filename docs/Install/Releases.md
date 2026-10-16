@@ -4,118 +4,49 @@ title: Releases
 
 # Releases
 
-Grid publishes versioned artifacts on GitHub and GitHub Container Registry (GHCR).
+A **platform release** is one cut of Grid as an application: the same version across the component repositories, recorded on [Downloads](./Downloads.md) with a short changelog.
 
-| Channel | Purpose | Git tag | Image tags |
-|---------|---------|---------|------------|
-| **Current** | Active development line | `vX.Y.Z` | `X.Y.Z`, `current` |
-| **LTS** | Long-term support line | `vX.Y.Z-lts` | `X.Y.Z`, `lts`, `current` |
+Tags and that download list are separate. A git tag names a commit in one repository. A download entry names the set of tags that ship together, plus what changed.
 
-Images:
+## How a release is planned
 
-- `ghcr.io/gridplatform/grid-core`
-- `ghcr.io/gridplatform/grid-ui`
+1. Decide the line: **LTS** or **current** (current includes beta tags when we publish them).
+2. Land the work on `main` in each component repository.
+3. Write a short platform changelog (bullet summary) on [Downloads](./Downloads.md) under that line.
+4. Note the component tags in [`install/releases.json`](https://github.com/gridplatform/grid-core/blob/main/install/releases.json).
+5. Tag the repositories, in order: **grid-cli → grid-ui → grid-terraform → grid-core**.
 
-Pin installs with an exact version (`GRID_VERSION=X.Y.Z`) or a channel (`GRID_RELEASE_CHANNEL=current` or `lts`).
+Each repository keeps its own `CHANGELOG.md` for detail. The Downloads page stays a short summary of the platform cut.
 
-## Versioning
+## Tagging structure
 
-Versions use semver: `MAJOR.MINOR.PATCH` (example: `0.1.0`).
+| Line | Git tag | Example | GHCR tags |
+|------|---------|---------|-----------|
+| Current | `vX.Y.Z` | `v0.1.0` | `0.1.0`, `current` |
+| Beta | `vX.Y.Z-beta.N` | `v0.2.0-beta.1` | `0.2.0-beta.1` |
+| LTS | `vX.Y.Z-lts` | `v1.2.0-lts` | `1.2.0`, `lts` |
 
-| Part | Meaning |
-|------|---------|
-| **MAJOR** | Breaking change |
-| **MINOR** | Backward-compatible feature |
-| **PATCH** | Backward-compatible fix |
+Semver: `MAJOR.MINOR.PATCH`.
 
-`0.x.y` means the public API and install surface may still change. `1.0.0` marks a stability commitment.
+- **MAJOR** — breaking change
+- **MINOR** — backward-compatible feature
+- **PATCH** — backward-compatible fix
 
-A platform release uses the **same** version on `grid-cli`, `grid-core`, and `grid-ui`. Set `package.json` `version` to that number before tagging.
+`0.x.y` may still move. `1.0.0` is the stability line.
 
-Optional: tag `doc` and **`grid-terraform`** with the same git tag (module bank
-`release.yml` publishes GitHub Release + `current` / `lts` floating tags — same pattern as `grid-cli`).
+The same tag string is applied to `grid-cli`, `grid-core`, `grid-ui`, and usually `grid-terraform`. Docs may be tagged with the same ref.
 
-## Publish a release
-
-1. Merge workflows and version bumps to `main` on each repo.
-2. Tag in order: **grid-cli → grid-ui → grid-core**.
-3. Confirm the **Release** workflow succeeds in GitHub Actions.
-4. Set new GHCR packages to **Public** under the organization Packages settings.
-
-Current channel:
+Install uses that git ref directly:
 
 ```bash
-TAG=v0.1.0
-
-cd grid-cli
-git checkout main && git pull
-git tag -a "$TAG" -m "$TAG"
-git push origin "$TAG"
-
-cd ../grid-ui
-git checkout main && git pull
-git tag -a "$TAG" -m "$TAG"
-git push origin "$TAG"
-
-cd ../grid-core
-git checkout main && git pull
-git tag -a "$TAG" -m "$TAG"
-git push origin "$TAG"
+export GRID_REF=v0.1.0
+curl -fsSL https://raw.githubusercontent.com/gridplatform/grid-core/${GRID_REF}/install/install.sh | sudo -E bash
 ```
 
-LTS channel uses the same steps with `TAG=vX.Y.Z-lts`.
+`vX.Y.Z` installs that current build. `vX.Y.Z-lts` installs that LTS build. `vX.Y.Z-beta.N` installs that beta build.
 
-## Install a release
-
-### Pre-built images
-
-```bash
-git clone https://github.com/gridplatform/grid-core.git
-cd grid-core
-cp install/.env.example install/.env
-```
-
-Set `GRID_AUTH_ADMIN_PASSWORD`, then pin:
-
-```bash
-GRID_RELEASE_CHANNEL=current
-# GRID_VERSION=0.1.0
-```
-
-```bash
-docker compose -f install/docker-compose.release.yml --env-file install/.env pull
-docker compose -f install/docker-compose.release.yml --env-file install/.env up -d
-bash install/verify.sh
-```
-
-### Build from source
-
-```bash
-git clone https://github.com/gridplatform/grid-core.git
-cd grid-core
-git checkout v0.1.0
-cp install/.env.example install/.env
-```
-
-Set `GRID_AUTH_ADMIN_PASSWORD`. Optional sibling pins:
-
-```bash
-GRID_CLI_REF=v0.1.0
-GRID_UI_REF=v0.1.0
-```
-
-```bash
-docker compose -f install/docker-compose.yml --env-file install/.env up -d --build
-bash install/verify.sh
-```
-
-## Support policy
-
-| Channel | Policy |
-|---------|--------|
-| **Current** | Newest features; shorter support; may change between minors |
-| **LTS** | Longer support; fixes and security backports; minimal breaking churn |
+Published builds and their changelogs: [Downloads](./Downloads.md).
 
 ## Related
 
-[Docker Compose](./Docker_Compose.md) · [Configuration](./Configuration.md) · [VM install](./VM.md)
+[Downloads](./Downloads.md) · [VM](./VM.md) · [Docker Compose](./Docker_Compose.md) · [Configuration](./Configuration.md)

@@ -14,4 +14,4 @@ Self-host Grid on a VM or with Docker Compose. Scripts: **[grid-core/install](ht
 | [Configuration](Configuration.md) | Env vars (generated from `data/configuration.json`) |
 | [Monitoring](Monitoring.md) | Host Prometheus / Alertmanager / Alloy |
 
-**Typical path:** Remote_State → VM / Docker_Compose → Configuration → Monitoring → [Your_Desired_State_Repo](../Getting-Started/Your_Desired_State_Repo.md) → [Auth_RBAC_And_Approvals](../Admin/Auth_RBAC_And_Approvals.md).
+**Typical path:** Remote_State → VM / Docker_Compose → Configuration → Monitoring → [Your_Intent_Repository](../Getting-Started/Your_Intent_Repository.md) → [Auth_RBAC_And_Approvals](../Admin/Auth_RBAC_And_Approvals.md).

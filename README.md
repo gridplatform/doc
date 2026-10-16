@@ -19,7 +19,7 @@ Folders and files follow the same convention as Deep-Dive docs:
 | Section | Start here |
 |---------|------------|
 | About Grid | [Home](docs/Home.md) · [Architecture](docs/Architecture/Control_Plane.md) |
-| Getting-Started | [Quick_Start](docs/Getting-Started/Quick_Start.md) · [Your_Desired_State_Repo](docs/Getting-Started/Your_Desired_State_Repo.md) |
+| Getting-Started | [Quick_Start](docs/Getting-Started/Quick_Start.md) · [Your_Intent_Repository](docs/Getting-Started/Your_Intent_Repository.md) |
 | Concepts | [Desired_State](docs/Concepts/Desired_State.md) · [Unit_JSON](docs/Concepts/Unit_JSON.md) · [GitOps_Sync](docs/Concepts/GitOps_Sync.md) |
 | Clouds | One MD per provider, e.g. [AWS](docs/Clouds/AWS.md) · [GCP](docs/Clouds/GCP.md) |
 | Console | [Overview](docs/Console/Overview.md) |

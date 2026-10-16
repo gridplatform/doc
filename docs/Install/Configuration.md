@@ -46,17 +46,22 @@ Bootstrap creates one superadmin. Change the password before any shared host.
 | `GRID_AUTH_ALLOW_REGISTER` |  | Public self-register (`true`/`1`). Keep off for self-host | `false` |
 | `GRID_AUTH_DISABLED` |  | Bypass auth — **dev only**, never on a public VM | `false` |
 
-## GitOps (desired-state sync)
+## GitOps (intent sync)
 
-When `GRID_GITOPS_REPO_URL` is set, Core clones/pulls into `GRID_CONFIG_ROOT`. Admins can also change settings in the console (Sources).
+When `GRID_GITOPS_REPO_URL` is set, Core clones/pulls into `GRID_CONFIG_ROOT`. Works with any Git host. Prefer a clean URL. **Production (`npm run prod`) refuses to start** if the URL is HTTPS and username + host token + expiry are not all present (env or Admin → Sources / `gitops-secrets.json`). SSH remotes skip this check (use a deploy key on the host).
 
 | Variable | Required | Purpose | Typical |
 |----------|----------|---------|---------|
-| `GRID_GITOPS_REPO_URL` |  | Remote desired-state repo (fork of grid-config or your own) | `https://github.com/gridplatform/grid-config.git` |
+| `GRID_GITOPS_REPO_URL` | ✓ | Intent repo URL (HTTPS or SSH) — any Git provider | `https://git.example.com/org/intent.git` |
 | `GRID_GITOPS_BRANCH` |  | Branch to pull | `main` |
 | `GRID_GITOPS_PATH` |  | Optional subdirectory under the clone (relative, no `..`) | (empty = repo root) |
 | `GRID_GITOPS_SYNC_INTERVAL_SEC` |  | Auto pull + reconcile interval. Default `600` when a repo URL is set; `0` = manual only | `600` |
+| `GRID_GITOPS_USERNAME` | ✓\* | HTTPS username for the host token (`git`, GitLab `oauth2`, Bitbucket `x-token-auth`, …) | `git` |
+| `GRID_GITOPS_TOKEN` | ✓\* | Host-issued PAT/deploy token for HTTPS remotes (Grid does not generate it). Also accepted from `GRID_DATA_DIR/gitops-secrets.json` after Sources | `ghp_…` / deploy token |
+| `GRID_GITOPS_TOKEN_EXPIRES_AT` | ✓\* | Expiry (`YYYY-MM-DD`) of that host token — required with HTTPS auth in production | `2027-01-15` |
 | `GRID_USE_DEMO` |  | Force demo-infra fixture path (local labs). Do not use in production | `false` |
+
+\*Required for **HTTPS** intent remotes in production (all three: username, token, expiry). Not required when using an **SSH** remote.
 
 ## Module bank
 

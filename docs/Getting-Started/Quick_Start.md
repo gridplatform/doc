@@ -4,20 +4,21 @@ title: Quick start
 
 # Quick start
 
-Goal: a working Grid control plane on a VM or local machine, pointed at a desired-state repository, ready to Sync and Plan.
+Goal: a working Grid control plane on a VM or local machine, pointed at an intent Git repository you own, ready to Sync and Plan.
 
 ## Prerequisites
 
 1. **Remote Terraform state** for anything beyond a disposable lab — [Remote state](../Install/Remote_State.md).
 2. Outbound HTTPS from the host (GitHub, cloud APIs, module bank).
-3. A **desired-state Git repository you own** — [Your_Desired_State_Repo](./Your_Desired_State_Repo.md). Do not use the public [grid-config](https://github.com/gridplatform/grid-config) sample as production SoT.
+3. An **intent Git repository you own** — [Your intent repository](./Your_Intent_Repository.md). Do not use the public [grid-config](https://github.com/gridplatform/grid-config) sample as production SoT.
 
 ## Fastest path (Compose on Ubuntu)
 
 ```bash
 export GRID_AUTH_ADMIN_PASSWORD='choose-a-strong-password'
 # After creating remote state, also export GRID_TF_* (see remote-state guide)
-curl -fsSL https://raw.githubusercontent.com/gridplatform/grid-core/main/install/install.sh | sudo -E bash
+export GRID_REF=v0.1.0
+curl -fsSL https://raw.githubusercontent.com/gridplatform/grid-core/${GRID_REF}/install/install.sh | sudo -E bash
 ```
 
 Open `http://<host>/`, sign in with the bootstrap admin email/password from `install/.env`.

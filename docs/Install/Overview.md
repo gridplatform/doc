@@ -39,10 +39,16 @@ Skipping remote state is acceptable only for a disposable local lab.
 
 ## Version pinning
 
-Prefer a **release tag** (`GRID_REF` / image version / `GRID_MODULE_BANK_REF=v0.1.0`). Until a tag exists for a package, `main` is the integration branch — protect it with PR + CI.
+Set `GRID_REF` to the tag you want ([Releases](./Releases.md), [Downloads](./Downloads.md)):
+
+```bash
+export GRID_REF=v0.1.0
+curl -fsSL https://raw.githubusercontent.com/gridplatform/grid-core/${GRID_REF}/install/install.sh | sudo -E bash
+```
 
 ## Next
 
+- [Releases](./Releases.md) · [Downloads](./Downloads.md)  
 - [Install on a VM](./VM.md)  
 - [Docker Compose](./Docker_Compose.md)  
 - [Configuration](./Configuration.md)  

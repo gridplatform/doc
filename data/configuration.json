@@ -95,13 +95,14 @@
     },
     {
       "id": "gitops",
-      "title": "GitOps (desired-state sync)",
-      "intro": "When `GRID_GITOPS_REPO_URL` is set, Core clones/pulls into `GRID_CONFIG_ROOT`. Admins can also change settings in the console (Sources).",
+      "title": "GitOps (intent sync)",
+      "intro": "When `GRID_GITOPS_REPO_URL` is set, Core clones/pulls into `GRID_CONFIG_ROOT`. Works with any Git host. Prefer a clean URL. **Production (`npm run prod`) hard-fails HTTPS remotes without username + host token + expiry** (env or Admin → Sources). SSH remotes use host deploy keys instead.",
       "vars": [
         {
           "name": "GRID_GITOPS_REPO_URL",
-          "purpose": "Remote desired-state repo (fork of grid-config or your own)",
-          "typical": "`https://github.com/gridplatform/grid-config.git`"
+          "required": true,
+          "purpose": "Intent repo URL (HTTPS or SSH) — any Git provider",
+          "typical": "`https://git.example.com/org/intent.git`"
         },
         {
           "name": "GRID_GITOPS_BRANCH",
@@ -117,6 +118,24 @@
           "name": "GRID_GITOPS_SYNC_INTERVAL_SEC",
           "purpose": "Auto pull + reconcile interval. Default `600` when a repo URL is set; `0` = manual only",
           "typical": "`600`"
+        },
+        {
+          "name": "GRID_GITOPS_USERNAME",
+          "required": true,
+          "purpose": "Required for HTTPS intent remotes in production (`git`, GitLab `oauth2`, Bitbucket `x-token-auth`, …). Also stored in `gitops-secrets.json` via Admin → Sources. Not required for SSH remotes.",
+          "typical": "`git`"
+        },
+        {
+          "name": "GRID_GITOPS_TOKEN",
+          "required": true,
+          "purpose": "Required for HTTPS intent remotes in production (host-issued PAT/deploy token; Grid does not generate it). Also accepted from `GRID_DATA_DIR/gitops-secrets.json` after Admin → Sources. Not required for SSH remotes.",
+          "typical": "`ghp_…` / deploy token (or unset once secrets file is populated)"
+        },
+        {
+          "name": "GRID_GITOPS_TOKEN_EXPIRES_AT",
+          "required": true,
+          "purpose": "Required with HTTPS auth in production (`YYYY-MM-DD` from your Git host). Also stored via Sources as authExpiresAt / secrets `tokenExpiresAt`.",
+          "typical": "`2027-01-15`"
         },
         {
           "name": "GRID_USE_DEMO",

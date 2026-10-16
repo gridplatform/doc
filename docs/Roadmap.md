@@ -27,7 +27,7 @@ What Grid is **shipping**, **hardening**, and **explicitly not done yet**. Prefe
 | Broader console cloud release | GCP and others behind `consoleProviderRelease` |
 | GCP and other catalogs | Documented as `planned` until released — see [Clouds/GCP](./Clouds/GCP.md) |
 | Azure / other CLI catalogs | Moving subtypes from planned → supported |
-| Packaging / release polish | GHCR channels, install verification |
+| Packaging / release polish | GHCR channels, `install/releases.json` — [Releases](./Install/Releases.md) · [Downloads](./Install/Downloads.md) |
 | Hardening AWS on real VMs | Production soak |
 
 ## Upcoming / gated

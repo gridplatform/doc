@@ -10,7 +10,7 @@ Sync is how Grid’s inventory catches up with Git. It is **pull-based reconcili
 
 | Variable / setting | Meaning |
 |--------------------|---------|
-| `GRID_GITOPS_REPO_URL` | Remote desired-state repository |
+| `GRID_GITOPS_REPO_URL` | Remote intent repository |
 | `GRID_GITOPS_BRANCH` | Branch to track (default `main`) |
 | `GRID_GITOPS_PATH` | Optional subdirectory (relative; no `..`) |
 | `GRID_GITOPS_SYNC_INTERVAL_SEC` | Auto interval; default `600` when a URL is set; `0` = manual only |
@@ -73,6 +73,6 @@ Repo URLs with embedded credentials are redacted in API responses.
 
 ## Related
 
-- [Your desired-state repository](../Getting-Started/Your_Desired_State_Repo.md)
+- [Your intent repository](../Getting-Started/Your_Intent_Repository.md)
 - [Release lifecycle](./Release_Lifecycle.md)
 - [Admin → Sources](../Console/Admin_And_Sources.md)

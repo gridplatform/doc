@@ -55,4 +55,4 @@ Pin the bank so control planes do not silently float to breaking module commits.
 
 - [Unit JSON](./Unit_JSON.md)
 - [Archive and remote state](./Archive_And_Remote_State.md)
-- [Releases (platform versioning)](../Install/Releases.md)
+- [Releases](../Install/Releases.md) · [Downloads](../Install/Downloads.md)
