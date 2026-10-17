@@ -1,0 +1,20 @@
+name: Rebuild website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start a gridplatform.org build
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK is missing, so the website was not rebuilt."
+            exit 1
+          fi
+          curl -fsS -X POST "$HOOK"
