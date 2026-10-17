@@ -85,6 +85,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          href: 'https://gridplatform.org/',
+          label: 'Website',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/gridplatform',
           label: 'GitHub',
           position: 'right',

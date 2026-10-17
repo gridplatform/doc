@@ -55,6 +55,8 @@ const sidebars: SidebarsConfig = {
         'Clouds/OpenShift',
         'Clouds/Redis_Enterprise',
         'Clouds/Confluent_Cloud',
+        'Clouds/Utho',
+        'Clouds/MongoDB',
       ],
     },
     {
