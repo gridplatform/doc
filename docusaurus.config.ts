@@ -74,12 +74,6 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'docs',
-          position: 'left',
-          label: 'Documentation',
-        },
-        {
           to: '/Getting-Started/Quick_Start',
           label: 'Quick start',
           position: 'left',
