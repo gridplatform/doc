@@ -64,9 +64,9 @@ const config: Config = {
       },
     },
     navbar: {
-      title: 'Grid',
+      title: 'Docs',
       logo: {
-        alt: 'Grid',
+        alt: 'Docs home',
         src: 'img/logo.png',
         srcDark: 'img/logo.png',
         width: 28,
