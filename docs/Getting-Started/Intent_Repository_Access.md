@@ -57,7 +57,7 @@ Use this when the private repository is on GitHub.com or GitHub Enterprise. Ente
 3. On GitHub: profile photo → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
 4. Resource owner: the org or user that owns the repository.
 5. Repository access: **Only select repositories**, then the intent repository.
-6. Repository permissions: **Contents** → **Read-only**. Choose **Read and write** only if this control plane pushes `archive/`.
+6. Under **Permissions**, open **Repository permissions** and **Add permissions**. Select **Contents** first. Then set **Access** to **Read-only**. GitHub adds **Metadata** as **Read-only** on its own and marks it required. Leave it. Choose **Read and write** on Contents only if this control plane pushes `archive/`.
 7. Set an expiration. Copy that date.
 8. Generate the token and copy it. GitHub shows it once.
 9. If the org enforces SAML single sign-on, open the token and **Authorize** it for that org. An unauthorized token cannot see the private repository.
