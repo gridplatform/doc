@@ -10,7 +10,7 @@ The public [grid-config](https://github.com/gridplatform/grid-config) repository
 
 ## Recommended setup
 
-1. Create a **new empty repository** under your org on **any Git host** (GitHub, GitLab, Bitbucket, Gitea, …). **Private repos are expected** for real orgs.
+1. Create a **new empty repository** on the Git host you use (GitHub, GitLab, or another host that speaks Git). Private repos are expected. Where the username, token, and expiry go: [Intent repository access](./Intent_Repository_Access.md).
 2. Copy a minimal tree from `grid-config` (one project, one cloud, one environment, one unit).
 3. Replace every `REPLACE_*` / lab CIDR / account-specific value.
 4. Point Grid at that remote with a clean URL (no token in the URL). Production HTTPS also needs a host username, a host-issued token, and that token’s expiry. SSH uses a deploy key instead. Full steps: [Intent repository access](./Intent_Repository_Access.md).
