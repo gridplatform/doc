@@ -17,7 +17,7 @@ The two files are never mixed. There is **no override flag** for production.
 
 | Package | Hard gate? | Notes |
 |---------|------------|--------|
-| **grid-core** | **Yes** | API boot refuses incomplete production `.env` / injected env — including **HTTPS GitOps without username + host token + expiry** (“Without any token, I’m not moving forward.”). SSH remotes OK with host deploy keys. |
+| **grid-core** | **Yes** | API boot refuses incomplete production `.env` / injected env — including **HTTPS GitOps without username + host token + expiry**. SSH remotes use a host deploy key. See [Intent repository access](../Getting-Started/Intent_Repository_Access.md). |
 | **grid-ui** | **Yes** | `npm run build` / `prod` requires `.env` + `VITE_GRID_API_URL` |
 | **install / Compose** | **Yes** | `check-env.sh` + `compose-up.sh`; Compose is **production-only** |
 | **grid-cli** | **No** | Add-on: Core validates then injects env via `cliChildEnv()`. `npm run build` is compile-only. Generate still errors if remote state vars are incomplete. |

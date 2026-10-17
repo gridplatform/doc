@@ -13,22 +13,16 @@ The public [grid-config](https://github.com/gridplatform/grid-config) repository
 1. Create a **new empty repository** under your org on **any Git host** (GitHub, GitLab, Bitbucket, Gitea, …). **Private repos are expected** for real orgs.
 2. Copy a minimal tree from `grid-config` (one project, one cloud, one environment, one unit).
 3. Replace every `REPLACE_*` / lab CIDR / account-specific value.
-4. Point Grid at that remote (clean URL — no token in the URL):
+4. Point Grid at that remote with a clean URL (no token in the URL). Production HTTPS also needs a host username, a host-issued token, and that token’s expiry. SSH uses a deploy key instead. Full steps: [Intent repository access](./Intent_Repository_Access.md).
 
 ```bash
 GRID_GITOPS_REPO_URL=https://git.example.com/<org>/<your-infra-config>.git
 GRID_GITOPS_BRANCH=main
 GRID_GITOPS_PATH=          # empty = repo root (projects/… at top level)
 GRID_GITOPS_SYNC_INTERVAL_SEC=600
-# Production (`npm run prod`) hard-requires username + token + expiry for HTTPS remotes:
-GRID_GITOPS_USERNAME=git            # or oauth2 / x-token-auth per host
-GRID_GITOPS_TOKEN=…                 # host-issued PAT / deploy token (any provider)
-GRID_GITOPS_TOKEN_EXPIRES_AT=2027-01-15
 ```
 
-5. In the console: **Admin → Sources** — set **username**, paste a **host-issued** personal access / deploy token (Grid does not create it), set **Token valid until** to that token’s expiry on the Git host, save (secret lands under `GRID_DATA_DIR`, never echoed back) **or** use an SSH remote with a deploy key on the control-plane host → **Sync**.
-
-Without username + token + expiry (HTTPS) or a deploy key (SSH), Sync cannot reach a private intent repo — and **`npm run prod` will not boot** until HTTPS auth is fully configured.
+5. **Sync** from **Admin → Sources** or Infrastructure.
 
 ## Canonical layout
 
@@ -76,4 +70,5 @@ Details: [GitOps sync](../Concepts/GitOps_Sync.md).
 - [Unit JSON](../Concepts/Unit_JSON.md)
 - [Module bank](../Concepts/Module_Bank.md)
 - [Kubernetes workloads](../Concepts/Kubernetes_Workloads.md)
+- [Intent repository access](./Intent_Repository_Access.md)
 - [Admin → Sources](../Console/Admin_And_Sources.md)

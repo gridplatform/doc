@@ -74,5 +74,6 @@ Repo URLs with embedded credentials are redacted in API responses.
 ## Related
 
 - [Your intent repository](../Getting-Started/Your_Intent_Repository.md)
+- [Intent repository access](../Getting-Started/Intent_Repository_Access.md)
 - [Release lifecycle](./Release_Lifecycle.md)
 - [Admin → Sources](../Console/Admin_And_Sources.md)

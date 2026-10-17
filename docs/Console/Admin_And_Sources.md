@@ -26,7 +26,7 @@ Configure:
 
 Then **Sync** from Sources or Infrastructure. Credentials in repo URLs are redacted when read back from the API.
 
-> Prefer a deploy key or machine user with **read** access to private desired-state repos. Write access is only needed if you push archive from the control plane (unusual).
+HTTPS production access is a host username, a host-issued token, and that token’s expiry (`YYYY-MM-DD`). SSH uses a deploy key and does not use those three. Read access is enough. Write is only needed if this control plane pushes `archive/` back to Git. Setup: [Intent repository access](../Getting-Started/Intent_Repository_Access.md).
 
 ## Environments
 

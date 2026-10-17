@@ -15,6 +15,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'Getting-Started/Quick_Start',
         'Getting-Started/Your_Intent_Repository',
+        'Getting-Started/Intent_Repository_Access',
       ],
     },
     {

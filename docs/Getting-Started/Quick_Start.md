@@ -10,7 +10,7 @@ Goal: a working Grid control plane on a VM or local machine, pointed at an inten
 
 1. **Remote Terraform state** for anything beyond a disposable lab — [Remote state](../Install/Remote_State.md).
 2. Outbound HTTPS from the host (GitHub, cloud APIs, module bank).
-3. An **intent Git repository you own** — [Your intent repository](./Your_Intent_Repository.md). Do not use the public [grid-config](https://github.com/gridplatform/grid-config) sample as production SoT.
+3. An **intent Git repository you own** — [Your intent repository](./Your_Intent_Repository.md) and [how production reaches it](./Intent_Repository_Access.md). Do not use the public [grid-config](https://github.com/gridplatform/grid-config) sample as production SoT.
 
 ## Fastest path (Compose on Ubuntu)
 
