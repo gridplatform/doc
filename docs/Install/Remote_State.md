@@ -25,7 +25,7 @@ The module-bank provider (where a unit is deployed) is independent of where you 
 | `oci` | Oracle Object Storage | Native `oci` backend; archive via S3-compat (`GRID_TF_S3_ENDPOINT`) |
 | `oss` | Alibaba Cloud OSS | Native `oss` backend; archive via S3-compat endpoint |
 | `cos` | Tencent Cloud COS | Native `cos` backend; archive defaults to `https://cos.<region>.myqcloud.com` |
-| `s3compat` | Huawei OBS, OVH, OTC, IBM COS, CtrlS, Yotta, MinIO, … | Terraform `backend "s3"` + **required** `GRID_TF_S3_ENDPOINT` |
+| `s3compat` | Huawei OBS, OVH, OTC, IBM COS, CtrlS, Yotta, Utho, MinIO, … | Terraform `backend "s3"` + **required** `GRID_TF_S3_ENDPOINT` |
 | `local` | VM disk | none — **development only** (`npm run dev`). Production refuses local state |
 
 ### Module bank → suggested state store
@@ -48,7 +48,8 @@ the usual place operators put remote state / `archive/` when they want state
 | `ibm` | `s3compat` (alias `ibm`) | IBM Cloud Object Storage (S3 API) — or use another cloud’s bucket |
 | `ctrls` | `s3compat` (alias `ctrls`) | Vendor object store via S3 endpoint |
 | `yotta` | `s3compat` (alias `yotta`) | Vendor object store via S3 endpoint |
-| `openshift`, `rancher`, `confluent-cloud`, `redis-enterprise` | same as the **underlying** cloud (often `s3` / `gcs` / `azurerm`) | Platform overlays — no separate TF state backend |
+| `utho` | `s3compat` (alias `utho`) | Utho object storage via S3 endpoint |
+| `openshift`, `rancher`, `confluent-cloud`, `redis-enterprise`, `mongodb` | same as the **underlying** cloud (often `s3` / `gcs` / `azurerm`) | Platform overlays — no separate TF state backend |
 
 Example OVH / Huawei:
 
